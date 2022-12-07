@@ -1,0 +1,1022 @@
+{
+   "persons": [
+      {
+         "personID": 58,
+         "name": "Achilles"
+      },
+      {
+         "personID": 282,
+         "name": "Acrisius"
+      },
+      {
+         "personID": 38,
+         "name": "Actaeon"
+      },
+      {
+         "personID": 142,
+         "name": "Admetus"
+      },
+      {
+         "personID": 342,
+         "name": "Adonis"
+      },
+      {
+         "personID": 40,
+         "name": "Aeacus"
+      },
+      {
+         "personID": 88,
+         "name": "Aedon"
+      },
+      {
+         "personID": 155,
+         "name": "Aegeus"
+      },
+      {
+         "personID": 43,
+         "name": "Aegina"
+      },
+      {
+         "personID": 345,
+         "name": "Aeolus"
+      },
+      {
+         "personID": 166,
+         "name": "Aerope"
+      },
+      {
+         "personID": 353,
+         "name": "Aesacus"
+      },
+      {
+         "personID": 154,
+         "name": "Aethra"
+      },
+      {
+         "personID": 165,
+         "name": "Agamemnon"
+      },
+      {
+         "personID": 24,
+         "name": "Agave"
+      },
+      {
+         "personID": 14,
+         "name": "Agenor"
+      },
+      {
+         "personID": 57,
+         "name": "Ajax"
+      },
+      {
+         "personID": 319,
+         "name": "Akoites"
+      },
+      {
+         "personID": 296,
+         "name": "Alcaeus"
+      },
+      {
+         "personID": 321,
+         "name": "Alcathoe"
+      },
+      {
+         "personID": 141,
+         "name": "Alcestis"
+      },
+      {
+         "personID": 101,
+         "name": "Alcippe"
+      },
+      {
+         "personID": 105,
+         "name": "Alcmene"
+      },
+      {
+         "personID": 135,
+         "name": "Alexiares"
+      },
+      {
+         "personID": 350,
+         "name": "Alexirhoe"
+      },
+      {
+         "personID": 346,
+         "name": "Alkyone"
+      },
+      {
+         "personID": 146,
+         "name": "Alope"
+      },
+      {
+         "personID": 82,
+         "name": "Alphenor"
+      },
+      {
+         "personID": 144,
+         "name": "Amphiaraus"
+      },
+      {
+         "personID": 78,
+         "name": "Amphion"
+      },
+      {
+         "personID": 106,
+         "name": "Amphitryon"
+      },
+      {
+         "personID": 334,
+         "name": "Amyclas"
+      },
+      {
+         "personID": 150,
+         "name": "Androgeos"
+      },
+      {
+         "personID": 294,
+         "name": "Andromeda"
+      },
+      {
+         "personID": 134,
+         "name": "Anicetos"
+      },
+      {
+         "personID": 173,
+         "name": "Anticlea"
+      },
+      {
+         "personID": 290,
+         "name": "Antigone"
+      },
+      {
+         "personID": 157,
+         "name": "Antiope"
+      },
+      {
+         "personID": 96,
+         "name": "Aphareus"
+      },
+      {
+         "personID": 65,
+         "name": "Aphrodite"
+      },
+      {
+         "personID": 35,
+         "name": "Apollo"
+      },
+      {
+         "personID": 309,
+         "name": "Arachne"
+      },
+      {
+         "personID": 95,
+         "name": "Arene"
+      },
+      {
+         "personID": 66,
+         "name": "Ares"
+      },
+      {
+         "personID": 9,
+         "name": "Argea"
+      },
+      {
+         "personID": 151,
+         "name": "Ariadne"
+      },
+      {
+         "personID": 39,
+         "name": "Aristaeus"
+      },
+      {
+         "personID": 323,
+         "name": "Arsippe"
+      },
+      {
+         "personID": 306,
+         "name": "Artemis"
+      },
+      {
+         "personID": 279,
+         "name": "Athene"
+      },
+      {
+         "personID": 180,
+         "name": "Atlas"
+      },
+      {
+         "personID": 234,
+         "name": "Atrapos"
+      },
+      {
+         "personID": 164,
+         "name": "Atreus"
+      },
+      {
+         "personID": 112,
+         "name": "Augeas"
+      },
+      {
+         "personID": 26,
+         "name": "Autonoë"
+      },
+      {
+         "personID": 333,
+         "name": "Baucis"
+      },
+      {
+         "personID": 2,
+         "name": "Bellerophon"
+      },
+      {
+         "personID": 20,
+         "name": "Cadmus"
+      },
+      {
+         "personID": 286,
+         "name": "Calliope"
+      },
+      {
+         "personID": 293,
+         "name": "Cassiopeia"
+      },
+      {
+         "personID": 93,
+         "name": "Castor"
+      },
+      {
+         "personID": 348,
+         "name": "Cebren"
+      },
+      {
+         "personID": 53,
+         "name": "Cephalus"
+      },
+      {
+         "personID": 292,
+         "name": "Cepheus"
+      },
+      {
+         "personID": 312,
+         "name": "Cephissus"
+      },
+      {
+         "personID": 145,
+         "name": "Cercyon"
+      },
+      {
+         "personID": 344,
+         "name": "Ceyx"
+      },
+      {
+         "personID": 114,
+         "name": "Chloris"
+      },
+      {
+         "personID": 21,
+         "name": "Cilix"
+      },
+      {
+         "personID": 339,
+         "name": "Cinyras"
+      },
+      {
+         "personID": 235,
+         "name": "Clotho"
+      },
+      {
+         "personID": 183,
+         "name": "Clymene"
+      },
+      {
+         "personID": 167,
+         "name": "Clytemnestra"
+      },
+      {
+         "personID": 160,
+         "name": "Coeus"
+      },
+      {
+         "personID": 110,
+         "name": "Creon"
+      },
+      {
+         "personID": 33,
+         "name": "Creusa"
+      },
+      {
+         "personID": 70,
+         "name": "Cronos"
+      },
+      {
+         "personID": 36,
+         "name": "Daedalus"
+      },
+      {
+         "personID": 83,
+         "name": "Damasichthon"
+      },
+      {
+         "personID": 281,
+         "name": "Danae"
+      },
+      {
+         "personID": 303,
+         "name": "Daphne"
+      },
+      {
+         "personID": 130,
+         "name": "Deianira"
+      },
+      {
+         "personID": 238,
+         "name": "Demeter"
+      },
+      {
+         "personID": 177,
+         "name": "Deucalion"
+      },
+      {
+         "personID": 335,
+         "name": "Diomede"
+      },
+      {
+         "personID": 68,
+         "name": "Dione"
+      },
+      {
+         "personID": 29,
+         "name": "Dionysus"
+      },
+      {
+         "personID": 30,
+         "name": "Echion"
+      },
+      {
+         "personID": 314,
+         "name": "Echo"
+      },
+      {
+         "personID": 169,
+         "name": "Electra"
+      },
+      {
+         "personID": 298,
+         "name": "Electryon"
+      },
+      {
+         "personID": 41,
+         "name": "Endeïs"
+      },
+      {
+         "personID": 181,
+         "name": "Epimetheus"
+      },
+      {
+         "personID": 232,
+         "name": "Erebus"
+      },
+      {
+         "personID": 55,
+         "name": "Erechtheus"
+      },
+      {
+         "personID": 64,
+         "name": "Eros"
+      },
+      {
+         "personID": 288,
+         "name": "Eteokles"
+      },
+      {
+         "personID": 13,
+         "name": "Europa"
+      },
+      {
+         "personID": 283,
+         "name": "Eurydice"
+      },
+      {
+         "personID": 7,
+         "name": "Eurynome"
+      },
+      {
+         "personID": 301,
+         "name": "Eurystheus"
+      },
+      {
+         "personID": 118,
+         "name": "Eurytos"
+      },
+      {
+         "personID": 102,
+         "name": "Evenus"
+      },
+      {
+         "personID": 72,
+         "name": "Gaia"
+      },
+      {
+         "personID": 3,
+         "name": "Glaucus"
+      },
+      {
+         "personID": 351,
+         "name": "Grenicus"
+      },
+      {
+         "personID": 240,
+         "name": "Hades"
+      },
+      {
+         "personID": 23,
+         "name": "Harmonia"
+      },
+      {
+         "personID": 133,
+         "name": "Hebe"
+      },
+      {
+         "personID": 62,
+         "name": "Hedone"
+      },
+      {
+         "personID": 163,
+         "name": "Helen"
+      },
+      {
+         "personID": 111,
+         "name": "Helios"
+      },
+      {
+         "personID": 176,
+         "name": "Hellen"
+      },
+      {
+         "personID": 67,
+         "name": "Hera"
+      },
+      {
+         "personID": 108,
+         "name": "Heracles"
+      },
+      {
+         "personID": 315,
+         "name": "Hermaphroditus"
+      },
+      {
+         "personID": 52,
+         "name": "Hermes"
+      },
+      {
+         "personID": 161,
+         "name": "Hermione"
+      },
+      {
+         "personID": 86,
+         "name": "Hermothoe"
+      },
+      {
+         "personID": 51,
+         "name": "Herse"
+      },
+      {
+         "personID": 124,
+         "name": "Hesione"
+      },
+      {
+         "personID": 349,
+         "name": "Hesperia"
+      },
+      {
+         "personID": 104,
+         "name": "Hippodamia"
+      },
+      {
+         "personID": 158,
+         "name": "Hippolytus"
+      },
+      {
+         "personID": 343,
+         "name": "Hippotes"
+      },
+      {
+         "personID": 147,
+         "name": "Hippothoon"
+      },
+      {
+         "personID": 336,
+         "name": "Hyacintus"
+      },
+      {
+         "personID": 131,
+         "name": "Hyllus"
+      },
+      {
+         "personID": 182,
+         "name": "Iapetus"
+      },
+      {
+         "personID": 37,
+         "name": "Icarus"
+      },
+      {
+         "personID": 98,
+         "name": "Idas"
+      },
+      {
+         "personID": 84,
+         "name": "Ilioneus"
+      },
+      {
+         "personID": 27,
+         "name": "Ino"
+      },
+      {
+         "personID": 138,
+         "name": "Iolaus"
+      },
+      {
+         "personID": 119,
+         "name": "Iole"
+      },
+      {
+         "personID": 34,
+         "name": "Ion"
+      },
+      {
+         "personID": 107,
+         "name": "Iphicles"
+      },
+      {
+         "personID": 170,
+         "name": "Iphigenia"
+      },
+      {
+         "personID": 120,
+         "name": "Iphitos"
+      },
+      {
+         "personID": 289,
+         "name": "Ismene"
+      },
+      {
+         "personID": 79,
+         "name": "Ismenus"
+      },
+      {
+         "personID": 90,
+         "name": "Ithylus"
+      },
+      {
+         "personID": 331,
+         "name": "Itys"
+      },
+      {
+         "personID": 18,
+         "name": "Jocasta"
+      },
+      {
+         "personID": 340,
+         "name": "Kenchreis"
+      },
+      {
+         "personID": 236,
+         "name": "Lachesis"
+      },
+      {
+         "personID": 172,
+         "name": "Laertes"
+      },
+      {
+         "personID": 19,
+         "name": "Laius"
+      },
+      {
+         "personID": 126,
+         "name": "Laomedon"
+      },
+      {
+         "personID": 91,
+         "name": "Leda"
+      },
+      {
+         "personID": 139,
+         "name": "Leipephilene"
+      },
+      {
+         "personID": 73,
+         "name": "Leto"
+      },
+      {
+         "personID": 322,
+         "name": "Leucippe"
+      },
+      {
+         "personID": 285,
+         "name": "Linus"
+      },
+      {
+         "personID": 318,
+         "name": "Liriope"
+      },
+      {
+         "personID": 137,
+         "name": "Lityerses"
+      },
+      {
+         "personID": 97,
+         "name": "Lynceus"
+      },
+      {
+         "personID": 132,
+         "name": "Macaria"
+      },
+      {
+         "personID": 75,
+         "name": "Manto"
+      },
+      {
+         "personID": 103,
+         "name": "Marpessa"
+      },
+      {
+         "personID": 109,
+         "name": "Megara"
+      },
+      {
+         "personID": 162,
+         "name": "Menelaus"
+      },
+      {
+         "personID": 6,
+         "name": "Merope"
+      },
+      {
+         "personID": 278,
+         "name": "Metis"
+      },
+      {
+         "personID": 136,
+         "name": "Midas"
+      },
+      {
+         "personID": 148,
+         "name": "Minos"
+      },
+      {
+         "personID": 320,
+         "name": "Minyas"
+      },
+      {
+         "personID": 341,
+         "name": "Myrrha"
+      },
+      {
+         "personID": 313,
+         "name": "Narcissus"
+      },
+      {
+         "personID": 115,
+         "name": "Neleus"
+      },
+      {
+         "personID": 117,
+         "name": "Nestor"
+      },
+      {
+         "personID": 300,
+         "name": "Nikippe"
+      },
+      {
+         "personID": 85,
+         "name": "Niobe"
+      },
+      {
+         "personID": 233,
+         "name": "Nyx"
+      },
+      {
+         "personID": 310,
+         "name": "Oceanus"
+      },
+      {
+         "personID": 171,
+         "name": "Odysseus"
+      },
+      {
+         "personID": 287,
+         "name": "Oeagrus"
+      },
+      {
+         "personID": 143,
+         "name": "Oecles"
+      },
+      {
+         "personID": 17,
+         "name": "Oedipus"
+      },
+      {
+         "personID": 100,
+         "name": "Oenomaus"
+      },
+      {
+         "personID": 168,
+         "name": "Orestes"
+      },
+      {
+         "personID": 284,
+         "name": "Orpheus"
+      },
+      {
+         "personID": 308,
+         "name": "Pan"
+      },
+      {
+         "personID": 87,
+         "name": "Pandareus"
+      },
+      {
+         "personID": 326,
+         "name": "Pandion"
+      },
+      {
+         "personID": 237,
+         "name": "Pandora"
+      },
+      {
+         "personID": 338,
+         "name": "Paphos"
+      },
+      {
+         "personID": 152,
+         "name": "Pasiphae"
+      },
+      {
+         "personID": 49,
+         "name": "Peleus"
+      },
+      {
+         "personID": 140,
+         "name": "Pelias"
+      },
+      {
+         "personID": 299,
+         "name": "Pelops"
+      },
+      {
+         "personID": 174,
+         "name": "Penelope"
+      },
+      {
+         "personID": 302,
+         "name": "Peneus"
+      },
+      {
+         "personID": 31,
+         "name": "Pentheus"
+      },
+      {
+         "personID": 116,
+         "name": "Periclymenus"
+      },
+      {
+         "personID": 239,
+         "name": "Persephone"
+      },
+      {
+         "personID": 295,
+         "name": "Perses"
+      },
+      {
+         "personID": 280,
+         "name": "Perseus"
+      },
+      {
+         "personID": 81,
+         "name": "Phaedimus"
+      },
+      {
+         "personID": 149,
+         "name": "Phaedra"
+      },
+      {
+         "personID": 332,
+         "name": "Philemon"
+      },
+      {
+         "personID": 328,
+         "name": "Philomela"
+      },
+      {
+         "personID": 48,
+         "name": "Phocus"
+      },
+      {
+         "personID": 159,
+         "name": "Phoebe"
+      },
+      {
+         "personID": 22,
+         "name": "Phoenix"
+      },
+      {
+         "personID": 347,
+         "name": "Phosphorus"
+      },
+      {
+         "personID": 113,
+         "name": "Phyleus"
+      },
+      {
+         "personID": 153,
+         "name": "Pittheus"
+      },
+      {
+         "personID": 61,
+         "name": "Plouto"
+      },
+      {
+         "personID": 127,
+         "name": "Podarces"
+      },
+      {
+         "personID": 94,
+         "name": "Polydeuces"
+      },
+      {
+         "personID": 25,
+         "name": "Polydorus"
+      },
+      {
+         "personID": 8,
+         "name": "Polynices"
+      },
+      {
+         "personID": 4,
+         "name": "Poseidon"
+      },
+      {
+         "personID": 56,
+         "name": "Praxithea"
+      },
+      {
+         "personID": 352,
+         "name": "Priam"
+      },
+      {
+         "personID": 329,
+         "name": "Procne"
+      },
+      {
+         "personID": 54,
+         "name": "Procris"
+      },
+      {
+         "personID": 179,
+         "name": "Prometheus"
+      },
+      {
+         "personID": 42,
+         "name": "Psamathe"
+      },
+      {
+         "personID": 63,
+         "name": "Psyche"
+      },
+      {
+         "personID": 337,
+         "name": "Pygmalion"
+      },
+      {
+         "personID": 324,
+         "name": "Pyramus"
+      },
+      {
+         "personID": 178,
+         "name": "Pyrrha"
+      },
+      {
+         "personID": 77,
+         "name": "Rhacius"
+      },
+      {
+         "personID": 69,
+         "name": "Rhea"
+      },
+      {
+         "personID": 316,
+         "name": "Salmacis"
+      },
+      {
+         "personID": 28,
+         "name": "Semele"
+      },
+      {
+         "personID": 80,
+         "name": "Sipylus"
+      },
+      {
+         "personID": 5,
+         "name": "Sisyphus"
+      },
+      {
+         "personID": 99,
+         "name": "Sterope"
+      },
+      {
+         "personID": 297,
+         "name": "Sthenelus"
+      },
+      {
+         "personID": 128,
+         "name": "Syleus"
+      },
+      {
+         "personID": 307,
+         "name": "Syrinx"
+      },
+      {
+         "personID": 60,
+         "name": "Tantalus"
+      },
+      {
+         "personID": 50,
+         "name": "Telamon"
+      },
+      {
+         "personID": 175,
+         "name": "Telemachus"
+      },
+      {
+         "personID": 15,
+         "name": "Telephassa"
+      },
+      {
+         "personID": 330,
+         "name": "Tereus"
+      },
+      {
+         "personID": 311,
+         "name": "Tethys"
+      },
+      {
+         "personID": 125,
+         "name": "Teucer"
+      },
+      {
+         "personID": 10,
+         "name": "Thersander"
+      },
+      {
+         "personID": 156,
+         "name": "Theseus"
+      },
+      {
+         "personID": 59,
+         "name": "Thetis"
+      },
+      {
+         "personID": 325,
+         "name": "Thisbe"
+      },
+      {
+         "personID": 74,
+         "name": "Tiresias"
+      },
+      {
+         "personID": 12,
+         "name": "Tisamenus"
+      },
+      {
+         "personID": 92,
+         "name": "Tyndareus"
+      },
+      {
+         "personID": 71,
+         "name": "Uranus"
+      },
+      {
+         "personID": 129,
+         "name": "Xenodice"
+      },
+      {
+         "personID": 32,
+         "name": "Xuthus"
+      },
+      {
+         "personID": 89,
+         "name": "Zethus"
+      },
+      {
+         "personID": 1,
+         "name": "Zeus"
+      },
+      {
+         "personID": 327,
+         "name": "Zeuxippe"
+      }
+   ],
+   "totalCount": 254,
+   "status": "OK"
+}
