@@ -58,7 +58,6 @@ def load_csv_to_db(table_name, cursor):
         duplicates, distinct_rows = check_for_duplicates(rows)
         print(f'Found {duplicates} duplicate values for table {table_name}')
         cursor.executemany(statement, distinct_rows)
-        cursor.execute("SELECT * FROM " + table_name + ";")
 
 
 def check_for_duplicates(rows):
