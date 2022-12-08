@@ -142,7 +142,7 @@ def generate_employees():
 
 
 def generate_employee(building):
-    employee_id = random.randrange(10000)
+    employee_id = random.randrange(100000)
     name = employee_names[random.randrange(len(employee_names))]
     surname = employee_surnames[random.randrange(len(employee_surnames))]
     email = name.lower() + '.' + surname.lower() + f"{employee_id:05d}" + '@example.com'
