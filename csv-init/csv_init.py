@@ -2,7 +2,7 @@ import csv
 import math
 import random
 import json
-from hashlib import sha256
+import bcrypt
 
 geo_file_name = 'baza_rooms_-_Arkusz1.csv'
 rooms_file_name = 'room_names.csv'
@@ -156,7 +156,8 @@ def generate_employee(building):
             del_city_id = cities[random.randrange(len(cities))]['id']
     # 1 - 10% / 2 - 20% / 3 - 20% / 4 - 20% / 5 - 30%
     priority = get_random_value([1, 2, 3, 4, 5], [10, 20, 20, 20, 30])
-    password_hash = sha256(name.encode('utf-8')).hexdigest()
+    password_salt = bcrypt.gensalt(6)
+    password_hash = bcrypt.hashpw(name.encode('utf-8'), password_salt)
     employees.append({
         "id": employee_db_id,
         "city_id": city_id,
@@ -165,6 +166,7 @@ def generate_employee(building):
         "last_name": surname,
         "email": email,
         "password_hash": password_hash,
+        "password_salt": password_salt,
         "priority": priority
     })
 
