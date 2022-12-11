@@ -59,7 +59,6 @@ CREATE TABLE employees(
     last_name VARCHAR(50),
     email VARCHAR(100),
     password_hash VARCHAR(128),
-    password_salt VARCHAR(64),
     priority INT,
     PRIMARY KEY(id),
     FOREIGN KEY(city_id) REFERENCES cities(id),
