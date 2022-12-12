@@ -24,7 +24,7 @@ docker run --name reservation_system -e POSTGRES_PASSWORD=admin -e POSTGRES_USER
 ### 4. Employees
 - na każde piętro budynku losowana jest najpierw liczba pracowników (od 50 do 100, rozkład jednostajny)
 - dla każdego pracownika losuje się imię (z dostępnej listy imion, rozkład jednostajny) oraz nazwisko (z dostępnej listy nazwisk, rozkład jednostajny)
-- losowana jest liczba (od 0 do 99999, rozkład jednostajny), która razem z inicjałami pracownika tworzy id pracownika (np. MK12345)
+- losowana jest liczba (od 0 do 99999, rozkład jednostajny), która razem z inicjałami pracownika tworzy jego id (przykład: MK12345)
 - generowany jest email w formacie first_name + "." + last_name + id + "@example.com" (przykład: ivy.jacobs56433@example.com)
 - pracownik może pracować w delegacji, wówczas pole delegation_city_id w pliku csv zawierać będzie id miasta, w którym aktualnie przebywa. W przeciwnym wypadku id miasta będzie puste. Dla każdego pracownika losowana jest szansa na bycie w delegacji (5% szans). Jeżeli pracownik jest w delegacji, losuje się mu id miasta (rozkład normalny) ze wszystkich dostępnych (za wyjątkiem tego, w którym obecnie się znajduje)
 - każdemu pracownikowi również losowany jest priorytet odpowiadający priorytetom pokoi. Pracownik będzie mógł rezerwować tylko pokoje o takim samym lub niższym priorytecie niż jego własny. Losowanie odbywa się w taki sam sposób (od 1 do 5, rozkład: 1 - 10% szans, 2 - 20% szans, 3 - 20% szans, 4 - 20% szans, 5 - 30% szans)
