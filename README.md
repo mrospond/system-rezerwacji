@@ -11,7 +11,7 @@ docker run --name reservation_system -e POSTGRES_PASSWORD=admin -e POSTGRES_USER
 ### 1. Regions, Countries, Cities
 - pobrane wcześniej z internetu
 ### 2. Buildings
-- wygenerowane losowo w każdym wybranym mieście (name = country_tag + nr budynku w obrębie kraju)
+- wygenerowane losowo w każdym mieście z pobranej wcześniej listy (name = country_tag + nr budynku w obrębie kraju)
 - w każdym mieście losowana jest liczba budynków (od 1 do 3, rozkład: 1 - 50% szans, 2 - 30% szans, 3 - 20% szans)
 - na każdy budynek losowana jest liczba pięter (od 1 do 4, rozkład jednostajny)
 ### 3. Rooms
