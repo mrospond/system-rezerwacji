@@ -7,7 +7,7 @@ docker run --name reservation_system -e POSTGRES_PASSWORD=admin -e POSTGRES_USER
 ```
 3. Do wypełnienia lokalnej bazy danych wierszami z wygenerowanych plików csv należy uruchomić skrypt db_init.py.
 
-## Zasady zastosowane przy generowaniu danych:
+## Zasady zastosowane przy generowaniu danych
 ### 1. Regions, Countries, Cities
 - pobrane wcześniej z internetu
 ### 2. Buildings
