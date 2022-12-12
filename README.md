@@ -1,6 +1,6 @@
 # System rezerwacji sal w korporacji
 ## Lokalna baza danych:
-1. Do wygenerowania pseudolosowych danych w formacie csv służy skrypt csv_init.py. Jeżeli dane są już obecne w folderze output, można pominąć ten krok i przejść od razu do punktu 2.
+1. Do wygenerowania pseudolosowych danych w formacie csv służy skrypt csv_init.py. Jego wykonanie zajmuje około 3/4 minuty ze względu na dużą liczbę generowanych pracowników. Jeżeli dane są już obecne w folderze output, można pominąć ten krok i przejść od razu do punktu 2.
 2. Należy stworzyć obraz bazy PostgreSQL w Dockerze następującą komendą:
 ```
 docker run --name reservation_system -e POSTGRES_PASSWORD=admin -e POSTGRES_USER=admin -e POSTGRES_DB=reservation_system -p 5432:5432 -d postgres
@@ -32,3 +32,6 @@ docker run --name reservation_system -e POSTGRES_PASSWORD=admin -e POSTGRES_USER
 ### 5. Priorytety
 - 1 oznacza najwyższy priorytet dla zwykłego usera, 5 oznacza najniższy
 - 0 oznacza najwyższy ogólnie możliwy priorytet, ale jest dostępny tylko dla adminów (wybranych ręcznie userów)
+
+## Zapisywanie danych do bazy
+Uruchomienie skryptu db_init.py powoduje drop wszystkich aktualnych tabel w bazie i utworzenie nowych na ich miejsce. Podczas zapisu danych pobranych z wygenerowanych csv do bazy odrzucane są wszystkie duplikaty (jeśli takowe się pojawią). 
