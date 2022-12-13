@@ -1,0 +1,13 @@
+sql:
+    dmls:
+        -
+            name: deleteFromEmployees
+            dml: DELETE FROM employees WHERE id = ?;
+        -
+            name: updateEmployee
+            dml: UPDATE employees SET WHERE id = ?;
+
+    queries:
+        -
+            name: selectAllFromEmployees
+            query: SELECT * FROM employees;
