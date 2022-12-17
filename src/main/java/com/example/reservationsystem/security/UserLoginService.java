@@ -27,7 +27,7 @@ public class UserLoginService implements UserDetailsService {
         UserDetails details = User.builder()
                 .username(employee.getEmail())
                 .password(employee.getPassword())
-                .roles("USER")
+                .roles(Role.USER.getRoleString())
                 .build();
         EmployeeUser user = EmployeeUser.fromUserDetails(details);
         user.setEmail(details.getUsername());
