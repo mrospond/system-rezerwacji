@@ -1,4 +1,4 @@
-package com.example.reservationsystem.dao;
+package com.example.reservationsystem.database.dao;
 
 public interface Dao<I, T> {
     T getById(I id);

@@ -1,5 +1,6 @@
-package com.example.reservationsystem.dao;
+package com.example.reservationsystem.database.dao;
 
+import com.example.reservationsystem.database.DBSession;
 import com.example.reservationsystem.domain.Employee;
 import lombok.AllArgsConstructor;
 import lombok.Data;

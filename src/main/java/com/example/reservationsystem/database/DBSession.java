@@ -1,6 +1,7 @@
-package com.example.reservationsystem.dao;
+package com.example.reservationsystem.database;
 
 import com.example.reservationsystem.config.SQLTemplates;
+import com.example.reservationsystem.database.exceptions.NonExistingSQLTemplateException;
 import lombok.AllArgsConstructor;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;

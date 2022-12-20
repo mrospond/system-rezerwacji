@@ -1,6 +1,6 @@
 package com.example.reservationsystem.controllers;
 
-import com.example.reservationsystem.dao.EmployeeDao;
+import com.example.reservationsystem.database.dao.EmployeeDao;
 import com.example.reservationsystem.security.EmployeeUser;
 import lombok.AllArgsConstructor;
 import lombok.Data;
