@@ -1,6 +1,6 @@
 package com.example.reservationsystem.security;
 
-import com.example.reservationsystem.dao.EmployeeDao;
+import com.example.reservationsystem.database.dao.EmployeeDao;
 import com.example.reservationsystem.domain.Employee;
 import lombok.AllArgsConstructor;
 import org.springframework.security.core.userdetails.User;

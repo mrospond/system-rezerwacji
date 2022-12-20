@@ -1,13 +1,22 @@
 sql:
     dmls:
         -
-            name: deleteFromEmployees
+            name: deleteEmployeeById
             dml: DELETE FROM employees WHERE id = ?;
         -
-            name: updateEmployee
-            dml: UPDATE employees SET WHERE id = ?;
+            name: updateEmployeeById
+            dml: UPDATE employees SET city_id = ?, delegation_city_id = ?, first_name = ?, last_name = ?, email = ?, password_hash = ?, priority = ? WHERE id = ?;
+        -
+            name: insertIntoEmployees
+            dml: INSERT INTO employees(id, city_id, delegation_city_id, first_name, last_name, email, password_hash, priority) VALUES (?, ?, ?, ?, ?, ?, ?, ?);
 
     queries:
         -
             name: selectAllFromEmployees
             query: SELECT * FROM employees;
+        -
+            name: selectEmployeeByEmail
+            query: SELECT * FROM employees WHERE email = ?;
+        -
+            name: selectEmployeeById
+            query: SELECT * FROM employees WHERE id = ?;
