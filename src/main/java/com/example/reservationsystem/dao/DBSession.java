@@ -21,7 +21,7 @@ public class DBSession {
 
     public <T> List<T> queryMultiple(String queryName, Class<T> type, Object... args) {
         final String query = getQueryTemplate(queryName).getQuery();
-        return jdbcTemplate.query(query, new BeanPropertyRowMapper<>(), args);
+        return jdbcTemplate.query(query, new BeanPropertyRowMapper<>(type), args);
     }
 
     public int executeDml(String dmlName, Object... args) {
