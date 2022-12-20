@@ -5,7 +5,6 @@ import lombok.AllArgsConstructor;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -15,19 +14,16 @@ public class DBSession {
     private final SQLTemplates templates;
     private final JdbcTemplate jdbcTemplate;
 
-    @Transactional
     public <T> T queryOne(String queryName, Class<T> type, Object... args) {
         final String query = getQueryTemplate(queryName).getQuery();
         return jdbcTemplate.queryForObject(query, new BeanPropertyRowMapper<>(type), args);
     }
 
-    @Transactional
     public <T> List<T> queryMultiple(String queryName, Class<T> type, Object... args) {
         final String query = getQueryTemplate(queryName).getQuery();
         return jdbcTemplate.query(query, new BeanPropertyRowMapper<>(), args);
     }
 
-    @Transactional
     public int executeDml(String dmlName, Object... args) {
         final String dml = getDmlTemplate(dmlName).getDml();
         return jdbcTemplate.update(dml, args);
