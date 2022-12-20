@@ -11,7 +11,7 @@ import java.util.List;
 @Repository
 @Data
 @AllArgsConstructor
-public class EmployeeDao implements Dao<Employee> {
+public class EmployeeDao implements Dao<String, Employee> {
     private final DBSession dbSession;
 
     public Employee getByEmail(String email) {
