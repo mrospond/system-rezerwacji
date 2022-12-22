@@ -14,7 +14,7 @@ public class ReservationDao implements Dao<Long, Reservation> {
 
     @Override
     public Reservation getById(Long id) {
-        return null;
+        return dbSession.queryOne("selectReservationById", Reservation.class, id);
     }
 
     @Override
