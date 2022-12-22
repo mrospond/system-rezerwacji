@@ -20,3 +20,7 @@ sql:
         -
             name: selectEmployeeById
             query: SELECT * FROM employees WHERE id = ?;
+        -
+            name: selectAllReservationsBetweenTimePeriodByCity
+            query: SELECT res.* FROM reservations res JOIN rooms r ON res.room_id = r.id JOIN buildings b ON r.building_id = b.id WHERE b.city_id = ? AND res.end_time > ? AND res.start_time < ?;
+
