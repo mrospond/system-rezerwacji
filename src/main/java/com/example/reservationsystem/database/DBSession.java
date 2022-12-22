@@ -18,11 +18,11 @@ public class DBSession {
     private final JdbcTemplate jdbcTemplate;
 
     public <T> T queryOne(String queryName, Class<T> type, Object... args) throws EntityNotFoundException {
+        final String query = getQueryTemplate(queryName).getQuery();
         try {
-            final String query = getQueryTemplate(queryName).getQuery();
             return jdbcTemplate.queryForObject(query, new BeanPropertyRowMapper<>(type), args);
         } catch (EmptyResultDataAccessException e) {
-            String message = "Entity of type " + type + " not found when executing sql: " + queryName;
+            String message = "Entity of type: " + type + " not found when executing sql: " + query;
             throw new EntityNotFoundException(message);
         }
     }
