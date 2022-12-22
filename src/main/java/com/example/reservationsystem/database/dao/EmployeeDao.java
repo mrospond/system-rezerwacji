@@ -4,12 +4,12 @@ import com.example.reservationsystem.database.DBSession;
 import com.example.reservationsystem.domain.Employee;
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
 
-@Repository
+@Component
 @Data
 @AllArgsConstructor
 public class EmployeeDao implements Dao<String, Employee> {
