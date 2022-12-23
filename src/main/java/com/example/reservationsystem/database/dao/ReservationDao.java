@@ -19,16 +19,17 @@ public class ReservationDao implements Dao<Long, Reservation> {
 
     @Override
     public void insert(Reservation entity) {
-
+        dbSession.executeDml("insertIntoReservations", entity);
     }
 
     @Override
     public void updateById(Long id, Reservation entity) {
-
+        // TODO: 23.12.2022 Add fields' values array as argument once ReflectionUtil is implemented
+        dbSession.executeDml("updateReservationById", id);
     }
 
     @Override
     public void deleteById(Long id) {
-
+        dbSession.executeDml("deleteReservationById", id);
     }
 }
