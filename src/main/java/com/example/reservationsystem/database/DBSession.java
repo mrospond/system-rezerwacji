@@ -17,7 +17,7 @@ public class DBSession {
     private final SQLTemplates templates;
     private final JdbcTemplate jdbcTemplate;
 
-    public <T> T queryOne(String queryName, Class<T> type, Object... args) throws EntityNotFoundException {
+    public <T> T queryOne(String queryName, Class<T> type, Object... args) {
         final String query = getQueryTemplate(queryName).getQuery();
         try {
             return jdbcTemplate.queryForObject(query, new BeanPropertyRowMapper<>(type), args);
