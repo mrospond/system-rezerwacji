@@ -9,6 +9,15 @@ sql:
         -
             name: insertIntoEmployees
             dml: INSERT INTO employees(id, city_id, delegation_city_id, first_name, last_name, email, password_hash, priority) VALUES (?, ?, ?, ?, ?, ?, ?, ?);
+        -
+            name: deleteReservationById
+            dml: DELETE FROM reservations WHERE id = ?;
+        -
+            name: updateReservationById
+            dml: UPDATE reservations SET room_id = ?, employee_id = ?, reoccurring = ?, start_time = ?, end_time = ?, create_time = ?, last_update_by = ?, last_update_time = ? WHERE id = ?;
+        -
+            name: insertIntoReservations
+            dml: INSERT INTO reservations (id, room_id, employee_id, reoccurring, start_time, end_time, create_time, last_update_by, last_update_time) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);
 
     queries:
         -
@@ -20,3 +29,9 @@ sql:
         -
             name: selectEmployeeById
             query: SELECT * FROM employees WHERE id = ?;
+        -
+            name: selectAllReservationsBetweenTimePeriodByCity
+            query: SELECT res.* FROM reservations res JOIN rooms r ON res.room_id = r.id JOIN buildings b ON r.building_id = b.id WHERE b.city_id = ? AND res.end_time > ? AND res.start_time < ?;
+        -
+            name: selectReservationById
+            query: SELECT * FROM reservations WHERE id = ?;

@@ -1,8 +1,10 @@
 package com.example.reservationsystem.database;
 
 import com.example.reservationsystem.config.SQLTemplates;
+import com.example.reservationsystem.database.exceptions.EntityNotFoundException;
 import com.example.reservationsystem.database.exceptions.NonExistingSQLTemplateException;
 import lombok.AllArgsConstructor;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
@@ -17,7 +19,12 @@ public class DBSession {
 
     public <T> T queryOne(String queryName, Class<T> type, Object... args) {
         final String query = getQueryTemplate(queryName).getQuery();
-        return jdbcTemplate.queryForObject(query, new BeanPropertyRowMapper<>(type), args);
+        try {
+            return jdbcTemplate.queryForObject(query, new BeanPropertyRowMapper<>(type), args);
+        } catch (EmptyResultDataAccessException e) {
+            String message = "Entity of type: " + type + " not found when executing sql: " + query;
+            throw new EntityNotFoundException(message);
+        }
     }
 
     public <T> List<T> queryMultiple(String queryName, Class<T> type, Object... args) {
