@@ -5,10 +5,10 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class SimpleQueryCondition extends AbstractQueryCondition {
-    private Object value;
+public class SimpleQueryCondition<T> extends AbstractQueryCondition {
+    private T value;
 
-    public SimpleQueryCondition(String key, String symbol, Object value) {
+    public SimpleQueryCondition(String key, String symbol, T value) {
         super();
         this.key = key;
         this.symbol = symbol;

@@ -1,7 +1,9 @@
 package com.example.reservationsystem;
 
+import com.example.reservationsystem.database.conditions.ConditionBuilder;
 import com.example.reservationsystem.domain.Room;
 import com.example.reservationsystem.services.RoomReservationService;
+import com.example.reservationsystem.services.filters.DynamicFilter;
 import com.example.reservationsystem.services.filters.RecordFilter;
 import com.example.reservationsystem.services.filters.rooms.RoomBuildingIdFilter;
 import com.example.reservationsystem.services.filters.rooms.RoomMoreThanXSeatsFilter;
@@ -31,7 +33,10 @@ public class ReservationSystemApplication {
 
         List<RecordFilter> filters = new ArrayList<>(List.of(
                 RoomMoreThanXSeatsFilter.of(4),
-                RoomBuildingIdFilter.of(1L)
+                RoomBuildingIdFilter.of(4L),
+                DynamicFilter.create()
+                        .setTargetClass(Room.class)
+                        .addCondition(ConditionBuilder.key("floor").equalTo(3))
         ));
 
         List<Room> rooms = service.findAvailableRooms(filters);

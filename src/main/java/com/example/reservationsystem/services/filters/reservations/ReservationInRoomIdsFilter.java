@@ -6,7 +6,6 @@ import com.example.reservationsystem.domain.Reservation;
 import com.example.reservationsystem.services.filters.RecordFilter;
 import lombok.AllArgsConstructor;
 
-import java.util.Arrays;
 import java.util.List;
 
 @AllArgsConstructor(staticName = "of")
@@ -15,9 +14,8 @@ public class ReservationInRoomIdsFilter implements RecordFilter {
 
     @Override
     public List<AbstractQueryCondition> toQueryConditions() {
-        List<Object> mappedIds = Arrays.asList(roomIds.toArray());
         return List.of(
-                ConditionBuilder.key("room_id").in(mappedIds)
+                ConditionBuilder.key("room_id").in(roomIds)
         );
     }
 

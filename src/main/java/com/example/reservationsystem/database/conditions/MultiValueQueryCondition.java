@@ -7,10 +7,10 @@ import java.util.List;
 
 @Getter
 @Setter
-public class MultiValueQueryCondition extends AbstractQueryCondition {
-    private List<Object> values;
+public class MultiValueQueryCondition<T> extends AbstractQueryCondition {
+    private List<T> values;
 
-    public MultiValueQueryCondition(String key, String symbol, List<Object> values) {
+    public MultiValueQueryCondition(String key, String symbol, List<T> values) {
         super();
         this.key = key;
         this.symbol = symbol;
