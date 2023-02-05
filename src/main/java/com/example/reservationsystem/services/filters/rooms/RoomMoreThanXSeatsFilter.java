@@ -2,6 +2,7 @@ package com.example.reservationsystem.services.filters.rooms;
 
 import com.example.reservationsystem.database.conditions.AbstractQueryCondition;
 import com.example.reservationsystem.database.conditions.ConditionBuilder;
+import com.example.reservationsystem.domain.Room;
 import com.example.reservationsystem.services.filters.RecordFilter;
 import lombok.AllArgsConstructor;
 
@@ -20,6 +21,6 @@ public class RoomMoreThanXSeatsFilter implements RecordFilter {
 
     @Override
     public boolean isTargetClass(Class<?> clazz) {
-        return false;
+        return Room.class.equals(clazz);
     }
 }
