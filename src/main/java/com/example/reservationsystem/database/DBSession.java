@@ -1,6 +1,8 @@
 package com.example.reservationsystem.database;
 
 import com.example.reservationsystem.config.SQLTemplates;
+import com.example.reservationsystem.database.conditions.AbstractQueryCondition;
+import com.example.reservationsystem.database.conditions.QueryHelper;
 import com.example.reservationsystem.database.exceptions.EntityNotFoundException;
 import com.example.reservationsystem.database.exceptions.NonExistingSQLTemplateException;
 import lombok.AllArgsConstructor;
@@ -15,6 +17,7 @@ import java.util.List;
 @Component
 public class DBSession {
     private final SQLTemplates templates;
+    private final QueryHelper queryHelper;
     private final JdbcTemplate jdbcTemplate;
 
     public <T> T queryOne(String queryName, Class<T> type, Object... args) {
@@ -27,8 +30,12 @@ public class DBSession {
         }
     }
 
-    public <T> List<T> queryMultiple(String queryName, Class<T> type, Object... args) {
-        final String query = getQueryTemplate(queryName).getQuery();
+    public <T> List<T> queryMultiple(String queryName, Class<T> type, List<AbstractQueryCondition> conditions) {
+        String query = getQueryTemplate(queryName).getQuery();
+        if (!conditions.isEmpty()) {
+            query = queryHelper.addWhereClauses(query, conditions);
+        }
+        Object[] args = queryHelper.mapConditionsToValuesArray(conditions);
         return jdbcTemplate.query(query, new BeanPropertyRowMapper<>(type), args);
     }
 

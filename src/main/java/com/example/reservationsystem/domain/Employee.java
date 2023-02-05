@@ -1,10 +1,10 @@
 package com.example.reservationsystem.domain;
 
-import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
-@Builder
+@NoArgsConstructor
 public class Employee {
     private String id;
     private Long cityId;
@@ -12,6 +12,6 @@ public class Employee {
     private String firstName;
     private String lastName;
     private String email;
-    private String password;
+    private String passwordHash;
     private Integer priority;
 }

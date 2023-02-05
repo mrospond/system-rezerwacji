@@ -35,3 +35,9 @@ sql:
         -
             name: selectReservationById
             query: SELECT * FROM reservations WHERE id = ?;
+        -
+            name: selectAllFromReservations
+            query: SELECT * FROM reservations;
+        -
+            name: selectAllFromRooms
+            query: SELECT * FROM rooms;

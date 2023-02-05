@@ -17,8 +17,10 @@ public class HomeController {
 
     @GetMapping("/")
     public String home(Authentication authentication, Model model) {
-        EmployeeUser user = (EmployeeUser) authentication.getPrincipal();
-        model.addAttribute("name", user.getFirstName());
+        if (authentication != null) {
+            EmployeeUser user = (EmployeeUser) authentication.getPrincipal();
+            model.addAttribute("name", user.getFirstName());
+        }
         return "index";
     }
 }

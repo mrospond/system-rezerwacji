@@ -8,9 +8,9 @@ import java.util.Arrays;
 @AllArgsConstructor
 @Getter
 public enum Role {
-    ADMIN("ROLE_ADMIN"),
-    MANAGER("ROLE_MANAGER"),
-    USER("ROLE_USER");
+    ADMIN("ADMIN"),
+    MANAGER("MANAGER"),
+    USER("USER");
 
     private final String roleString;
 
