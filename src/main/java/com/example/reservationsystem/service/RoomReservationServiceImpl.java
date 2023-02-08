@@ -1,15 +1,17 @@
-package com.example.reservationsystem.services;
+package com.example.reservationsystem.service;
 
 import com.example.reservationsystem.database.conditions.AbstractQueryCondition;
 import com.example.reservationsystem.database.dao.ReservationDao;
 import com.example.reservationsystem.database.dao.RoomDao;
 import com.example.reservationsystem.domain.Reservation;
 import com.example.reservationsystem.domain.Room;
-import com.example.reservationsystem.services.filters.RecordFilter;
+import com.example.reservationsystem.service.filters.RecordFilter;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @AllArgsConstructor
@@ -28,11 +30,11 @@ public class RoomReservationServiceImpl implements RoomReservationService {
         reservationDao.insert(reservation);
     }
 
-    private <T> List<AbstractQueryCondition> getQueryConditions(List<RecordFilter> recordFilters, Class<T> clazz) {
+    private <C> List<AbstractQueryCondition> getQueryConditions(List<RecordFilter> recordFilters, Class<C> clazz) {
         return recordFilters.stream()
                 .filter(recordFilter -> recordFilter.isTargetClass(clazz))
                 .map(RecordFilter::toQueryConditions)
                 .flatMap(List::stream)
-                .toList();
+                .collect(Collectors.toCollection(ArrayList::new));
     }
 }

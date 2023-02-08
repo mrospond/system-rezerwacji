@@ -1,9 +1,9 @@
-package com.example.reservationsystem.services.filters.rooms;
+package com.example.reservationsystem.service.filters.rooms;
 
 import com.example.reservationsystem.database.conditions.AbstractQueryCondition;
 import com.example.reservationsystem.database.conditions.ConditionBuilder;
 import com.example.reservationsystem.domain.Room;
-import com.example.reservationsystem.services.filters.RecordFilter;
+import com.example.reservationsystem.service.filters.RecordFilter;
 import lombok.AllArgsConstructor;
 
 import java.util.List;

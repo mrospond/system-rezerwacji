@@ -1,10 +1,9 @@
-package com.example.reservationsystem.services.filters;
+package com.example.reservationsystem.service.filters;
 
 import com.example.reservationsystem.database.conditions.AbstractQueryCondition;
 
 import java.util.List;
 
-@FunctionalInterface
 public interface RecordFilter {
     List<AbstractQueryCondition> toQueryConditions();
 

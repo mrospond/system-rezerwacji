@@ -1,8 +1,8 @@
-package com.example.reservationsystem.services;
+package com.example.reservationsystem.service;
 
 import com.example.reservationsystem.domain.Reservation;
 import com.example.reservationsystem.domain.Room;
-import com.example.reservationsystem.services.filters.RecordFilter;
+import com.example.reservationsystem.service.filters.RecordFilter;
 
 import java.util.List;
 

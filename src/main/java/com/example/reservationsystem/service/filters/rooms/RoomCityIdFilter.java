@@ -1,21 +1,25 @@
-package com.example.reservationsystem.services.filters.rooms;
+package com.example.reservationsystem.service.filters.rooms;
 
 import com.example.reservationsystem.database.conditions.AbstractQueryCondition;
 import com.example.reservationsystem.database.conditions.ConditionBuilder;
 import com.example.reservationsystem.domain.Room;
-import com.example.reservationsystem.services.filters.RecordFilter;
-import lombok.AllArgsConstructor;
+import com.example.reservationsystem.service.filters.RecordFilter;
 
+import java.util.Arrays;
 import java.util.List;
 
-@AllArgsConstructor(staticName = "of")
-public class RoomMoreThanXSeatsFilter implements RecordFilter {
-    private int seats;
+
+public class RoomCityIdFilter implements RecordFilter {
+    private List<Long> cityIds;
+
+    public RoomCityIdFilter(Long... ids) {
+        this.cityIds = Arrays.asList(ids);
+    }
 
     @Override
     public List<AbstractQueryCondition> toQueryConditions() {
         return List.of(
-                ConditionBuilder.key("seats").moreOrEqualTo(seats)
+                ConditionBuilder.key("city_id").in(cityIds)
         );
     }
 

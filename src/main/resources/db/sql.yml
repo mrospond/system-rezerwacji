@@ -22,22 +22,22 @@ sql:
     queries:
         -
             name: selectAllFromEmployees
-            query: SELECT * FROM employees;
+            query: SELECT * FROM employees e;
         -
             name: selectEmployeeByEmail
-            query: SELECT * FROM employees WHERE email = ?;
+            query: SELECT * FROM employees e WHERE e.email = ?;
         -
             name: selectEmployeeById
-            query: SELECT * FROM employees WHERE id = ?;
+            query: SELECT * FROM employees e WHERE e.id = ?;
         -
             name: selectAllReservationsBetweenTimePeriodByCity
             query: SELECT res.* FROM reservations res JOIN rooms r ON res.room_id = r.id JOIN buildings b ON r.building_id = b.id WHERE b.city_id = ? AND res.end_time > ? AND res.start_time < ?;
         -
             name: selectReservationById
-            query: SELECT * FROM reservations WHERE id = ?;
+            query: SELECT * FROM reservations res WHERE res.id = ?;
         -
             name: selectAllFromReservations
-            query: SELECT * FROM reservations;
+            query: SELECT * FROM reservations res;
         -
             name: selectAllFromRooms
-            query: SELECT * FROM rooms;
+            query: SELECT r.*, b.city_id, b.name building, c.name city FROM rooms r JOIN buildings b ON b.id = r.building_id JOIN cities c ON c.id = b.city_id;

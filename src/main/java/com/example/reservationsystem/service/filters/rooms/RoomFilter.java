@@ -1,8 +1,8 @@
-package com.example.reservationsystem.services.filters.rooms;
+package com.example.reservationsystem.service.filters.rooms;
 
 import com.example.reservationsystem.database.conditions.AbstractQueryCondition;
 import com.example.reservationsystem.domain.Room;
-import com.example.reservationsystem.services.filters.RecordFilter;
+import com.example.reservationsystem.service.filters.RecordFilter;
 import lombok.Builder;
 import lombok.Data;
 
@@ -11,23 +11,27 @@ import java.util.List;
 @Builder
 @Data
 public class RoomFilter implements RecordFilter {
-    private AbstractQueryCondition buildingId;
-    private AbstractQueryCondition priority;
+    private AbstractQueryCondition building;
+    private AbstractQueryCondition minPriority;
+    private AbstractQueryCondition maxPriority;
     private AbstractQueryCondition status;
     private AbstractQueryCondition floor;
     private AbstractQueryCondition name;
-    private AbstractQueryCondition seats;
+    private AbstractQueryCondition minSeats;
+    private AbstractQueryCondition maxSeats;
     private AbstractQueryCondition videoConferenceHolder;
 
     @Override
     public List<AbstractQueryCondition> toQueryConditions() {
         return List.of(
-                buildingId,
-                priority,
+                building,
+                minPriority,
+                maxPriority,
                 status,
                 floor,
                 name,
-                seats,
+                minSeats,
+                maxSeats,
                 videoConferenceHolder
         );
     }

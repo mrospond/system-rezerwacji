@@ -5,4 +5,5 @@ public abstract class AbstractQueryCondition {
     protected String symbol;
 
     public abstract String mapToSql();
+    public abstract boolean isEmpty();
 }

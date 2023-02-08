@@ -25,17 +25,18 @@ public class DBSession {
         try {
             return jdbcTemplate.queryForObject(query, new BeanPropertyRowMapper<>(type), args);
         } catch (EmptyResultDataAccessException e) {
-            String message = "Entity of type: " + type + " not found when executing sql: " + query;
+            String message = "Entity of type: " + type + " not found";
             throw new EntityNotFoundException(message);
         }
     }
 
     public <T> List<T> queryMultiple(String queryName, Class<T> type, List<AbstractQueryCondition> conditions) {
         String query = getQueryTemplate(queryName).getQuery();
-        if (!conditions.isEmpty()) {
-            query = queryHelper.addWhereClauses(query, conditions);
-        }
+
+        queryHelper.filterEmptyConditions(conditions);
+        query = queryHelper.addWhereClauses(query, conditions);
         Object[] args = queryHelper.mapConditionsToValuesArray(conditions);
+
         return jdbcTemplate.query(query, new BeanPropertyRowMapper<>(type), args);
     }
 

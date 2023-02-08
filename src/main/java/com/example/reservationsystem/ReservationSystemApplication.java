@@ -2,11 +2,11 @@ package com.example.reservationsystem;
 
 import com.example.reservationsystem.database.conditions.ConditionBuilder;
 import com.example.reservationsystem.domain.Room;
-import com.example.reservationsystem.services.RoomReservationService;
-import com.example.reservationsystem.services.filters.DynamicFilter;
-import com.example.reservationsystem.services.filters.RecordFilter;
-import com.example.reservationsystem.services.filters.rooms.RoomBuildingIdFilter;
-import com.example.reservationsystem.services.filters.rooms.RoomMoreThanXSeatsFilter;
+import com.example.reservationsystem.service.RoomReservationService;
+import com.example.reservationsystem.service.filters.DynamicFilter;
+import com.example.reservationsystem.service.filters.RecordFilter;
+import com.example.reservationsystem.service.filters.rooms.RoomBuildingIdFilter;
+import com.example.reservationsystem.service.filters.rooms.RoomMoreThanXSeatsFilter;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 

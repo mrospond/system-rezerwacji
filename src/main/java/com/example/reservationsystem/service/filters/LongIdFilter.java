@@ -1,26 +1,25 @@
-package com.example.reservationsystem.services.filters.reservations;
+package com.example.reservationsystem.service.filters;
 
 import com.example.reservationsystem.database.conditions.AbstractQueryCondition;
 import com.example.reservationsystem.database.conditions.ConditionBuilder;
-import com.example.reservationsystem.domain.Reservation;
-import com.example.reservationsystem.services.filters.RecordFilter;
 import lombok.AllArgsConstructor;
 
 import java.util.List;
 
 @AllArgsConstructor(staticName = "of")
-public class ReservationInRoomIdsFilter implements RecordFilter {
-    private List<Long> roomIds;
+public class LongIdFilter implements RecordFilter {
+    private Long id;
+    private Class<?> targetClass;
 
     @Override
     public List<AbstractQueryCondition> toQueryConditions() {
         return List.of(
-                ConditionBuilder.key("room_id").in(roomIds)
+                ConditionBuilder.key("id").equalTo(id)
         );
     }
 
     @Override
     public boolean isTargetClass(Class<?> clazz) {
-        return Reservation.class.equals(clazz);
+        return clazz.equals(targetClass);
     }
 }

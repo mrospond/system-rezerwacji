@@ -17,6 +17,14 @@ public class SimpleQueryCondition<T> extends AbstractQueryCondition {
 
     @Override
     public String mapToSql() {
+        if (isEmpty()) {
+            return "";
+        }
         return key + " " + symbol + " ?";
+    }
+
+    @Override
+    public boolean isEmpty() {
+        return value == null || String.valueOf(value).isBlank();
     }
 }

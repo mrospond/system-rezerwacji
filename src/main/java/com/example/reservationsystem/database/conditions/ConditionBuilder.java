@@ -14,6 +14,7 @@ public class ConditionBuilder {
     private static final String MORE_THAN = ">";
     private static final String MORE_OR_EQUAL = ">=";
     private static final String EQUALS = "=";
+    private static final String MATCHES_IGNORE_CASE = "~*";
     private static final String IN = "IN";
     private static final String NOT_IN = "NOT IN";
 
@@ -39,6 +40,10 @@ public class ConditionBuilder {
 
     public <T> SimpleQueryCondition<T> equalTo(T value) {
         return new SimpleQueryCondition<>(key, EQUALS, value);
+    }
+
+    public <T> SimpleQueryCondition<T> matching(T value) {
+        return new SimpleQueryCondition<>(key, MATCHES_IGNORE_CASE, value);
     }
 
     public <T> MultiValueQueryCondition<T> in(List<T> values) {
