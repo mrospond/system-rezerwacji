@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static com.example.reservationsystem.database.DatabaseConstants.BUILDING_PREFIX;
+import static com.example.reservationsystem.database.DatabaseConstants.CITY_PREFIX;
 import static com.example.reservationsystem.database.DatabaseConstants.ROOM_PREFIX;
 
 @Component
@@ -18,6 +19,7 @@ public class RoomFilterMapperImpl implements RoomFilterMapper {
     public RoomFilter mapToRoomFilter(RoomFilterDto dto) {
         return RoomFilter.builder()
                 .building(ConditionBuilder.key(BUILDING_PREFIX + "name").matching(dto.getBuilding()))
+                .city(ConditionBuilder.key(CITY_PREFIX + "name").matching(dto.getCity()))
                 .name(ConditionBuilder.key(ROOM_PREFIX + "name").matching(dto.getRoomName()))
                 .floor(ConditionBuilder.key(ROOM_PREFIX + "floor").in(getFloors(dto)))
                 .minSeats(ConditionBuilder.key(ROOM_PREFIX + "seats").moreOrEqualTo(dto.getMinSeats()))

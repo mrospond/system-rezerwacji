@@ -8,5 +8,5 @@ import java.util.List;
 public interface FilterService {
     List<RecordFilter> createUserSpecificFilters();
     void addRoomFilter(List<RecordFilter> filters, RoomFilterDto filterDto);
-    void enhanceFilterDto(RoomFilterDto dto);
+    void enhanceFilterDtoForView(RoomFilterDto dto);
 }

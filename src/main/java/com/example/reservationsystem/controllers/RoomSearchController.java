@@ -29,8 +29,7 @@ public class RoomSearchController {
         List<RecordFilter> recordFilters = filterService.createUserSpecificFilters();
         List<Room> rooms = roomReservationService.findAvailableRooms(recordFilters);
 
-        Employee user = employeeService.getLoggedInUserDetails();
-        updateModel(model, rooms, user);
+        updateModel(model, rooms);
         return "home";
     }
 
@@ -41,14 +40,14 @@ public class RoomSearchController {
 
         List<Room> rooms = roomReservationService.findAvailableRooms(recordFilters);
 
-        filterService.enhanceFilterDto(roomFilterDto);
+        filterService.enhanceFilterDtoForView(roomFilterDto);
 
-        Employee user = employeeService.getLoggedInUserDetails();
-        updateModel(model, rooms, user, roomFilterDto);
+        updateModel(model, rooms, roomFilterDto);
         return "home";
     }
 
-    private void updateModel(Model model, List<Room> rooms, Employee user) {
+    private void updateModel(Model model, List<Room> rooms) {
+        Employee user = employeeService.getLoggedInUserDetails();
         model.addAttribute("rooms", rooms);
         model.addAttribute("firstName", user.getFirstName());
         model.addAttribute("lastName", user.getLastName());
@@ -56,8 +55,8 @@ public class RoomSearchController {
         model.addAttribute("delegationCity", user.getDelegationCity());
     }
 
-    private void updateModel(Model model, List<Room> rooms, Employee user, RoomFilterDto roomFilterDto) {
-        updateModel(model, rooms, user);
+    private void updateModel(Model model, List<Room> rooms, RoomFilterDto roomFilterDto) {
+        updateModel(model, rooms);
         model.addAttribute("roomFilter", roomFilterDto);
     }
 }

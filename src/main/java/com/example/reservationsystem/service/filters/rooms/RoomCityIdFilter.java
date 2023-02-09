@@ -1,5 +1,6 @@
 package com.example.reservationsystem.service.filters.rooms;
 
+import com.example.reservationsystem.database.DatabaseConstants;
 import com.example.reservationsystem.database.conditions.AbstractQueryCondition;
 import com.example.reservationsystem.database.conditions.ConditionBuilder;
 import com.example.reservationsystem.domain.Room;
@@ -19,7 +20,7 @@ public class RoomCityIdFilter implements RecordFilter {
     @Override
     public List<AbstractQueryCondition> toQueryConditions() {
         return List.of(
-                ConditionBuilder.key("city_id").in(cityIds)
+                ConditionBuilder.key(DatabaseConstants.BUILDING_PREFIX + "city_id").in(cityIds)
         );
     }
 

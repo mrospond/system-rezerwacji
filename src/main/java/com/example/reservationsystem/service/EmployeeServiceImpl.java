@@ -19,9 +19,12 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public Employee getLoggedInUserDetails() {
-        EmployeeUser user = (EmployeeUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        EmployeeUser user = getLoggedInUser();
         return findEmployeeByEmail(user.getEmail());
     }
 
-
+    @Override
+    public EmployeeUser getLoggedInUser() {
+        return (EmployeeUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+    }
 }

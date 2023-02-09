@@ -27,12 +27,19 @@ public class UserLoginService implements UserDetailsService {
         UserDetails details = User.builder()
                 .username(employee.getEmail())
                 .password(employee.getPasswordHash())
-                .roles(Role.USER.getRoleString())
+                .roles(getUserRole(employee))
                 .build();
         EmployeeUser user = EmployeeUser.fromUserDetails(details);
         user.setEmail(details.getUsername());
         user.setFirstName(employee.getFirstName());
         user.setLastName(employee.getLastName());
         return user;
+    }
+
+    private String getUserRole(Employee employee) {
+        if (employee.getPriority() == 0) {
+            return Role.ADMIN.getRoleString();
+        }
+        return Role.USER.getRoleString();
     }
 }

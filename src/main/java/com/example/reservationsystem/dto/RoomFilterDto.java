@@ -12,8 +12,11 @@ import java.util.List;
 @Data
 @MinSeatNotBiggerThanMaxSeat
 public class RoomFilterDto {
+    @Pattern(regexp = NAME_REGEXP, message = "Room name has to match regular expression: " + NAME_REGEXP)
     private String roomName;
+    @Pattern(regexp = BUILDING_REGEXP, message = "Building name has to match regular expression: " + BUILDING_REGEXP)
     private String building;
+    @Pattern(regexp = NAME_REGEXP, message = "City has to match regular expression: " + NAME_REGEXP)
     private String city;
     private boolean floor1;
     private boolean floor2;
@@ -35,4 +38,6 @@ public class RoomFilterDto {
 
     private static final String STATUS_REGEXP = "^(all|available|unavailable)$";
     private static final String VCH_REGEXP = "^(all|yes|no)$";
+    private static final String NAME_REGEXP = "^[a-zA-Z0-9\\s]*$";
+    private static final String BUILDING_REGEXP = "^[a-zA-Z0-9\\s]*$";
 }

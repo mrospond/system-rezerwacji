@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>Rooms</title>
@@ -81,6 +81,18 @@
                         <input type="radio" name="videoConferenceHolder" id="noVCH" value="no" th:checked="${roomFilter?.videoConferenceHolder == 'no'}">
                         <label for="allVCH">All</label>
                         <input type="radio" name="videoConferenceHolder" id="allVCH" value="all" th:checked="${roomFilter?.videoConferenceHolder == 'all' || roomFilter == null}">
+                    </div>
+                    <div>
+                        <label>
+                            City
+                            <input type="text" name="city" th:value="${roomFilter?.city} ?: ''">
+                        </label>
+                    </div>
+                    <div>
+                        <label>
+                            Building
+                            <input type="text" name="building" th:value="${roomFilter?.building} ?: ''">
+                        </label>
                     </div>
                     <div class="filter-button-container">
                         <input type="submit" class="filter-submit" value="Filter">

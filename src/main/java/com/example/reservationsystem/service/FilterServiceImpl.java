@@ -4,15 +4,18 @@ import com.example.reservationsystem.domain.Employee;
 import com.example.reservationsystem.dto.RoomFilterDto;
 import com.example.reservationsystem.dto.mappers.RoomFilterMapper;
 import com.example.reservationsystem.security.EmployeeUser;
+import com.example.reservationsystem.security.Role;
 import com.example.reservationsystem.service.filters.RecordFilter;
 import com.example.reservationsystem.service.filters.rooms.RoomCityIdFilter;
 import com.example.reservationsystem.service.filters.rooms.RoomPriorityLowerThanFilter;
 import lombok.AllArgsConstructor;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 @Service
@@ -41,7 +44,7 @@ public class FilterServiceImpl implements FilterService {
     }
 
     @Override
-    public void enhanceFilterDto(RoomFilterDto dto) {
+    public void enhanceFilterDtoForView(RoomFilterDto dto) {
         List<Boolean> floors = new ArrayList<>();
         floors.add(dto.isFloor1());
         floors.add(dto.isFloor2());
@@ -51,9 +54,14 @@ public class FilterServiceImpl implements FilterService {
     }
 
     private void addCityRecordFilter(List<RecordFilter> recordFilters, Employee employee) {
-        Long delegationCityId = employee.getDelegationCityId();
-        Long cityId = employee.getCityId();
-        recordFilters.add(new RoomCityIdFilter(cityId, delegationCityId));
+        Collection<GrantedAuthority> authorities = employeeService.getLoggedInUser().getAuthorities();
+        boolean admin = authorities.stream()
+                .anyMatch(grantedAuthority -> grantedAuthority.getAuthority().equals("ROLE_" + Role.ADMIN.getRoleString()));
+        if (!admin) {
+            Long delegationCityId = employee.getDelegationCityId();
+            Long cityId = employee.getCityId();
+            recordFilters.add(new RoomCityIdFilter(cityId, delegationCityId));
+        }
     }
 
     private void addMaxRoomPriorityRecordFilter(List<RecordFilter> recordFilters, Employee employee) {
