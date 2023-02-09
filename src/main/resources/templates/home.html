@@ -65,6 +65,7 @@
                         </label>
                     </div>
                     <div>
+                        <label>Status: </label>
                         <label for="available">Available</label>
                         <input type="radio" name="status" id="available" value="available" th:checked="${roomFilter?.status == 'available'}">
                         <label for="unavailable">Unavailable</label>
@@ -73,6 +74,7 @@
                         <input type="radio" name="status" id="all" value="all" th:checked="${roomFilter?.status == 'all' || roomFilter == null}">
                     </div>
                     <div>
+                        <label>Video Conference Holder: </label>
                         <label for="VCH">Yes</label>
                         <input type="radio" name="videoConferenceHolder" id="VCH" value="yes" th:checked="${roomFilter?.videoConferenceHolder == 'yes'}">
                         <label for="noVCH">No</label>
