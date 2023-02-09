@@ -4,4 +4,5 @@ import com.example.reservationsystem.domain.Employee;
 
 public interface EmployeeService {
     Employee findEmployeeByEmail(String email);
+    Employee getLoggedInUserDetails();
 }

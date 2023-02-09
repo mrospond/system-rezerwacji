@@ -6,6 +6,7 @@ import com.example.reservationsystem.dto.mappers.RoomFilterMapper;
 import com.example.reservationsystem.security.EmployeeUser;
 import com.example.reservationsystem.service.filters.RecordFilter;
 import com.example.reservationsystem.service.filters.rooms.RoomCityIdFilter;
+import com.example.reservationsystem.service.filters.rooms.RoomPriorityLowerThanFilter;
 import lombok.AllArgsConstructor;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -28,9 +29,8 @@ public class FilterServiceImpl implements FilterService {
         EmployeeUser user = (EmployeeUser) authentication.getPrincipal();
         Employee employee = employeeService.findEmployeeByEmail(user.getEmail());
 
-        Long delegationCityId = employee.getDelegationCityId();
-        Long cityId = employee.getCityId();
-        recordFilters.add(new RoomCityIdFilter(cityId, delegationCityId));
+        addCityRecordFilter(recordFilters, employee);
+        addMaxRoomPriorityRecordFilter(recordFilters, employee);
 
         return recordFilters;
     }
@@ -48,5 +48,16 @@ public class FilterServiceImpl implements FilterService {
         floors.add(dto.isFloor3());
         floors.add(dto.isFloor4());
         dto.setFloors(floors);
+    }
+
+    private void addCityRecordFilter(List<RecordFilter> recordFilters, Employee employee) {
+        Long delegationCityId = employee.getDelegationCityId();
+        Long cityId = employee.getCityId();
+        recordFilters.add(new RoomCityIdFilter(cityId, delegationCityId));
+    }
+
+    private void addMaxRoomPriorityRecordFilter(List<RecordFilter> recordFilters, Employee employee) {
+        int priority = employee.getPriority();
+        recordFilters.add(RoomPriorityLowerThanFilter.ofPriority(priority));
     }
 }

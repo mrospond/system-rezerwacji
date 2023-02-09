@@ -2,7 +2,9 @@ package com.example.reservationsystem.service;
 
 import com.example.reservationsystem.database.dao.EmployeeDao;
 import com.example.reservationsystem.domain.Employee;
+import com.example.reservationsystem.security.EmployeeUser;
 import lombok.AllArgsConstructor;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -14,4 +16,12 @@ public class EmployeeServiceImpl implements EmployeeService {
     public Employee findEmployeeByEmail(String email) {
         return employeeDao.getByEmail(email);
     }
+
+    @Override
+    public Employee getLoggedInUserDetails() {
+        EmployeeUser user = (EmployeeUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        return findEmployeeByEmail(user.getEmail());
+    }
+
+
 }

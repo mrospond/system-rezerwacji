@@ -22,10 +22,10 @@ sql:
     queries:
         -
             name: selectAllFromEmployees
-            query: SELECT * FROM employees e;
+            query: SELECT e.*, c.name city, dc.name delegationCity FROM employees e JOIN cities c ON e.city_id = c.id LEFT JOIN cities dc ON e.delegation_city_id = dc.id;
         -
             name: selectEmployeeByEmail
-            query: SELECT * FROM employees e WHERE e.email = ?;
+            query: SELECT e.*, c.name city, dc.name delegationCity FROM employees e JOIN cities c ON e.city_id = c.id LEFT JOIN cities dc ON e.delegation_city_id = dc.id WHERE e.email = ?;
         -
             name: selectEmployeeById
             query: SELECT * FROM employees e WHERE e.id = ?;

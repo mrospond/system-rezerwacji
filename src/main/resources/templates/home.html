@@ -3,86 +3,88 @@
 <head>
     <meta charset="UTF-8">
     <title>Rooms</title>
-    <link rel="stylesheet" href="../static/style.css">
+    <link rel="stylesheet" href="../static/style.css" th:href="@{/style.css}">
 </head>
 <body>
-    <form method="post" action="/logout">
-        <label>
-            <input name="logout" type="submit" id="logout" value="Log Out">
-        </label>
-    </form>
-    <h2>Search for rooms</h2>
-    <div class="rooms">
-        <table>
-            <tr>
-                <th>Name</th>
-                <th>Floor</th>
-                <th>Seats</th>
-                <th>Priority</th>
-                <th>Status</th>
-                <th>Video Conference Holder</th>
-                <th>Building</th>
-                <th>City</th>
-            </tr>
-            <tr th:each="room: ${rooms}">
-                <td th:text="${room.name}"></td>
-                <td th:text="${room.floor}"></td>
-                <td th:text="${room.seats}"></td>
-                <td th:text="${room.priority}"></td>
-                <td th:text="${room.status}"></td>
-                <td th:text="${room.videoConferenceHolder}"></td>
-                <td th:text="${room.building}"></td>
-                <td th:text="${room.city}"></td>
-            </tr>
-        </table>
+    <div class="header">
+        <div class="header-left">
+            <span class="logged-in" th:text="|Logged in as: ${firstName} ${lastName}|"></span>
+            <span class="city-info" th:text="|Your city: ${city}|"></span>
+            <span class="city-info" th:text="${delegationCity} ? 'Your delegation city: ' + ${delegationCity} : 'Not in delegation'"></span>
+        </div>
+        <div class="header-right">
+            <a href="#home">Home</a>
+            <a href="#about">About</a>
+            <a class="active" href="/logout">Logout</a>
+        </div>
     </div>
-    <div class="filters">
-        <div class="filter-form-container">
-            <form action="/search" method="get" name="filters">
-                <div>
-                    <label>
-                        Room name
-                        <input type="text" name="roomName" th:value="${roomFilter?.roomName} ?: ''">
-                    </label>
-                </div>
-                <div th:each="i: ${#numbers.sequence(1, 4)}">
-                    <label th:for="'floor' + ${i}" th:text="${i}">X</label>
-                    <input type="checkbox" th:name="'floor' + ${i}" th:id="'floor' + ${i}" th:checked="${roomFilter == null || roomFilter?.floors[i-1]}">
-                </div>
-                <div>
-                    <label>
-                        Seats
-                        <input type="number" name="minSeats" min="2" max="32" th:value="${roomFilter?.minSeats} ?: '2'">
-                        <input type="number" name="maxSeats" min="2" max="32" th:value="${roomFilter?.maxSeats} ?: '32'">
-                    </label>
-                </div>
-                <div>
-                    <label>
-                        Priority
-                        <input type="number" name="minPriority" min="1" max="5" th:value="${roomFilter?.minPriority} ?: '1'">
-                        <input type="number" name="maxPriority" min="1" max="5" th:value="${roomFilter?.maxPriority} ?: '5'">
-                    </label>
-                </div>
-                <div>
-                    <label for="available">Available</label>
-                    <input type="radio" name="status" id="available" value="available" th:checked="${roomFilter?.status == 'available'}">
-                    <label for="unavailable">Unavailable</label>
-                    <input type="radio" name="status" id="unavailable" value="unavailable" th:checked="${roomFilter?.status == 'unavailable'}">
-                    <label for="all">All</label>
-                    <input type="radio" name="status" id="all" value="all" th:checked="${roomFilter?.status == 'all' || roomFilter == null}">
-                </div>
-                <div>
-                    <label for="VCH">Yes</label>
-                    <input type="radio" name="videoConferenceHolder" id="VCH" value="yes" th:checked="${roomFilter?.videoConferenceHolder == 'yes'}">
-                    <label for="noVCH">No</label>
-                    <input type="radio" name="videoConferenceHolder" id="noVCH" value="no" th:checked="${roomFilter?.videoConferenceHolder == 'no'}">
-                    <label for="allVCH">All</label>
-                    <input type="radio" name="videoConferenceHolder" id="allVCH" value="all" th:checked="${roomFilter?.videoConferenceHolder == 'all' || roomFilter == null}">
-                </div>
-                <div class="filter-button-container">
-                    <input type="submit" value="Filter">
-                </div>
-            </form>
+
+    <div class="content-container">
+        <h2>Search for rooms</h2>
+        <div class="rooms">
+            <table>
+                <tr>
+                    <th>Name</th>
+                    <th>Floor</th>
+                    <th>Seats</th>
+                    <th>Status</th>
+                    <th>Video Conference Holder</th>
+                    <th>Building</th>
+                    <th>City</th>
+                </tr>
+                <tr th:each="room: ${rooms}">
+                    <td th:text="${room.name}"></td>
+                    <td th:text="${room.floor}"></td>
+                    <td th:text="${room.seats}"></td>
+                    <td th:text="${room.status}"></td>
+                    <td th:text="${room.videoConferenceHolder} ? 'Yes' : 'No'"></td>
+                    <td th:text="${room.building}"></td>
+                    <td th:text="${room.city}"></td>
+                </tr>
+            </table>
+        </div>
+        <div class="filters">
+            <div class="filter-form-container">
+                <form action="/search" method="get" name="filters">
+                    <div>
+                        <label>
+                            Room name
+                            <input type="text" name="roomName" th:value="${roomFilter?.roomName} ?: ''">
+                        </label>
+                    </div>
+                    <label>Floors</label>
+                    <div th:each="i: ${#numbers.sequence(1, 4)}">
+                        <label th:for="'floor' + ${i}" th:text="${i}">X</label>
+                        <input type="checkbox" th:name="'floor' + ${i}" th:id="'floor' + ${i}" th:checked="${roomFilter == null || roomFilter?.floors[i-1]}">
+                    </div>
+                    <div>
+                        <label>
+                            Seats
+                            <input type="number" name="minSeats" min="2" max="32" th:value="${roomFilter?.minSeats} ?: '2'">
+                            <input type="number" name="maxSeats" min="2" max="32" th:value="${roomFilter?.maxSeats} ?: '32'">
+                        </label>
+                    </div>
+                    <div>
+                        <label for="available">Available</label>
+                        <input type="radio" name="status" id="available" value="available" th:checked="${roomFilter?.status == 'available'}">
+                        <label for="unavailable">Unavailable</label>
+                        <input type="radio" name="status" id="unavailable" value="unavailable" th:checked="${roomFilter?.status == 'unavailable'}">
+                        <label for="all">All</label>
+                        <input type="radio" name="status" id="all" value="all" th:checked="${roomFilter?.status == 'all' || roomFilter == null}">
+                    </div>
+                    <div>
+                        <label for="VCH">Yes</label>
+                        <input type="radio" name="videoConferenceHolder" id="VCH" value="yes" th:checked="${roomFilter?.videoConferenceHolder == 'yes'}">
+                        <label for="noVCH">No</label>
+                        <input type="radio" name="videoConferenceHolder" id="noVCH" value="no" th:checked="${roomFilter?.videoConferenceHolder == 'no'}">
+                        <label for="allVCH">All</label>
+                        <input type="radio" name="videoConferenceHolder" id="allVCH" value="all" th:checked="${roomFilter?.videoConferenceHolder == 'all' || roomFilter == null}">
+                    </div>
+                    <div class="filter-button-container">
+                        <input type="submit" class="filter-submit" value="Filter">
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
 </body>

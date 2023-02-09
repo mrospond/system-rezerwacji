@@ -12,8 +12,6 @@ import java.util.List;
 @Data
 public class RoomFilter implements RecordFilter {
     private AbstractQueryCondition building;
-    private AbstractQueryCondition minPriority;
-    private AbstractQueryCondition maxPriority;
     private AbstractQueryCondition status;
     private AbstractQueryCondition floor;
     private AbstractQueryCondition name;
@@ -25,8 +23,6 @@ public class RoomFilter implements RecordFilter {
     public List<AbstractQueryCondition> toQueryConditions() {
         return List.of(
                 building,
-                minPriority,
-                maxPriority,
                 status,
                 floor,
                 name,

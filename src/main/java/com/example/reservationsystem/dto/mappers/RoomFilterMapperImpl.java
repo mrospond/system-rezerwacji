@@ -22,8 +22,6 @@ public class RoomFilterMapperImpl implements RoomFilterMapper {
                 .floor(ConditionBuilder.key(ROOM_PREFIX + "floor").in(getFloors(dto)))
                 .minSeats(ConditionBuilder.key(ROOM_PREFIX + "seats").moreOrEqualTo(dto.getMinSeats()))
                 .maxSeats(ConditionBuilder.key(ROOM_PREFIX + "seats").lessOrEqualTo(dto.getMaxSeats()))
-                .minPriority(ConditionBuilder.key(ROOM_PREFIX + "priority").moreOrEqualTo(dto.getMinPriority()))
-                .maxPriority(ConditionBuilder.key(ROOM_PREFIX + "priority").lessOrEqualTo(dto.getMaxPriority()))
                 .status(ConditionBuilder.key(ROOM_PREFIX + "status").in(getStatuses(dto)))
                 .videoConferenceHolder(ConditionBuilder.key(ROOM_PREFIX + "video_conference_holder")
                         .in(getVideoConferenceValues(dto)))
