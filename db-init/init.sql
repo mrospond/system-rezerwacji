@@ -1,3 +1,4 @@
+DROP TABLE IF EXISTS user_permissions;
 DROP TABLE IF EXISTS reservations;
 DROP TABLE IF EXISTS employees;
 DROP TABLE IF EXISTS rooms;
@@ -48,7 +49,8 @@ CREATE TABLE rooms(
     seats INT,
     video_conference_holder BOOLEAN,
     PRIMARY KEY(id),
-    FOREIGN KEY(building_id) REFERENCES buildings(id)
+    FOREIGN KEY(building_id) REFERENCES buildings(id),
+    FOREIGN KEY(priority) REFERENCES user_permissions(id)
 );
 
 CREATE TABLE employees(
@@ -62,7 +64,8 @@ CREATE TABLE employees(
     priority INT,
     PRIMARY KEY(id),
     FOREIGN KEY(city_id) REFERENCES cities(id),
-    FOREIGN KEY(delegation_city_id) REFERENCES cities(id)
+    FOREIGN KEY(delegation_city_id) REFERENCES cities(id),
+    FOREIGN KEY(priority) REFERENCES user_permissions(id)
 );
 
 create table reservations(
@@ -79,3 +82,20 @@ create table reservations(
     FOREIGN KEY(room_id) REFERENCES rooms(id),
     FOREIGN KEY(employee_id) REFERENCES employees(id)
 );
+
+CREATE TABLE user_permissions(
+    id INT,
+    max_reservation_time_hours FLOAT,
+    max_room_size INT,
+    max_reservations_per_day INT,
+    PRIMARY KEY(id)
+);
+
+INSERT INTO user_permissions(id, max_reservation_time_hours, max_room_size, max_reservations_per_day)
+VALUES
+(0, 3, 32, 10),
+(1, 2.5, 32, 8),
+(2, 2, 16, 5),
+(3, 1.5, 8, 3),
+(4, 1.5, 4, 2),
+(5, 1, 2, 1)
