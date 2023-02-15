@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.time.LocalDate;
+
 @Controller
 @AllArgsConstructor
 public class ReservationController {
@@ -31,6 +33,7 @@ public class ReservationController {
     @GetMapping("/reservation")
     public String reservation(@RequestParam long roomId, Model model) {
         model.addAttribute("roomId", roomId);
+        model.addAttribute("date", LocalDate.now());
         return "reservation";
     }
 }

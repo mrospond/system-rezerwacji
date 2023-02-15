@@ -1,6 +1,7 @@
 package com.example.reservationsystem.controllers;
 
 import com.example.reservationsystem.database.exceptions.EntityNotFoundException;
+import com.example.reservationsystem.service.exceptions.InvalidReservationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindException;
@@ -32,6 +33,13 @@ public class ApplicationErrorController {
                 })
                 .toList();
         model.addAttribute("errors", errors);
+        return "error";
+    }
+
+    @ExceptionHandler(InvalidReservationException.class)
+    @ResponseStatus(value = HttpStatus.BAD_REQUEST)
+    public String handleError(InvalidReservationException exception, Model model) {
+        model.addAttribute("errors", exception.getErrors());
         return "error";
     }
 }

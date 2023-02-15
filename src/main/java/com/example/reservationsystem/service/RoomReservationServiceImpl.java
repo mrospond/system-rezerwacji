@@ -5,9 +5,11 @@ import com.example.reservationsystem.database.dao.ReservationDao;
 import com.example.reservationsystem.database.dao.RoomDao;
 import com.example.reservationsystem.domain.Reservation;
 import com.example.reservationsystem.domain.Room;
+import com.example.reservationsystem.service.exceptions.InvalidReservationException;
 import com.example.reservationsystem.service.filters.RecordFilter;
 import com.example.reservationsystem.service.reservation.ReservationValidator;
 import com.example.reservationsystem.service.reservation.ReservationValidatorImpl;
+import com.example.reservationsystem.service.reservation.ValidationResponse;
 import jakarta.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -38,8 +40,11 @@ public class RoomReservationServiceImpl implements RoomReservationService {
 
     @Override
     public void reserveRoom(Reservation reservation) {
-        if (reservationValidator.validate(reservation)) {
+        ValidationResponse validationResponse = reservationValidator.validate(reservation);
+        if (validationResponse.isValid()) {
             reservationDao.insert(reservation);
+        } else {
+            throw new InvalidReservationException("Invalid reservation", validationResponse.getErrors());
         }
     }
 

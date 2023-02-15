@@ -41,7 +41,7 @@
                     <td th:text="${room.videoConferenceHolder} ? 'Yes' : 'No'"></td>
                     <td th:text="${room.building}"></td>
                     <td th:text="${room.city}"></td>
-                    <td><a th:href="'/reservation?roomId=' + ${room.id}">Book</a></td>
+                    <td><a th:href="@{/reservation(roomId=${room.id})}">Book</a></td>
                 </tr>
             </table>
         </div>
