@@ -139,7 +139,7 @@ EXECUTE PROCEDURE TR_Reservations_CheckPriority();
 CREATE FUNCTION TR_Reservations_CheckCity()
 RETURNS TRIGGER AS $$
 BEGIN
-    IF (SELECT city_id FROM rooms WHERE id = NEW.room_id) <> (SELECT city_id FROM employees WHERE id = NEW.employee_id) AND (SELECT delegation_city_id FROM employees WHERE id = NEW.employee_id) <> (SELECT city_id FROM rooms WHERE id = NEW.room_id) THEN
+    IF (SELECT city_id FROM buildings WHERE id = (SELECT building_id FROM rooms WHERE id = NEW.room_id)) <> (SELECT city_id FROM employees WHERE id = NEW.employee_id) AND (SELECT delegation_city_id FROM employees WHERE id = NEW.employee_id) <> (SELECT city_id FROM buildings WHERE id = (SELECT building_id FROM rooms WHERE id = NEW.room_id)) THEN
         RAISE EXCEPTION 'Employee not allowed to reserve this room';
     END IF;
     RETURN NEW;
