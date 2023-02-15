@@ -118,9 +118,9 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
-CREATE TRIGGER TR_Reservations_checkPriority BEFORE INSERT ON reservations
+CREATE TRIGGER TR_Reservations_CheckPriority BEFORE INSERT ON reservations
 FOR EACH ROW
-EXECUTE PROCEDURE TR_Reservations_checkPriority();
+EXECUTE PROCEDURE TR_Reservations_CheckPriority();
 
 --CREATE FUNCTION TR_Reservations_CheckDate()
 --RETURNS TRIGGER AS $$
@@ -132,9 +132,37 @@ EXECUTE PROCEDURE TR_Reservations_checkPriority();
 --END;
 --$$ LANGUAGE plpgsql;
 
-CREATE TRIGGER TR_Reservations_CheckDate BEFORE INSERT ON reservations
+--CREATE TRIGGER TR_Reservations_CheckDate BEFORE INSERT ON reservations
+--FOR EACH ROW
+--EXECUTE PROCEDURE TR_Reservations_CheckDate();
+
+CREATE FUNCTION TR_Reservations_CheckCity()
+RETURNS TRIGGER AS $$
+BEGIN
+    IF (SELECT city_id FROM rooms WHERE id = NEW.room_id) <> (SELECT city_id FROM employees WHERE id = NEW.employee_id) AND (SELECT delegation_city_id FROM employees WHERE id = NEW.employee_id) <> (SELECT city_id FROM rooms WHERE id = NEW.room_id) THEN
+        RAISE EXCEPTION 'Employee not allowed to reserve this room';
+    END IF;
+    RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER TR_Reservations_CheckCity BEFORE INSERT ON reservations
 FOR EACH ROW
-EXECUTE PROCEDURE TR_Reservations_CheckDate();
+EXECUTE PROCEDURE TR_Reservations_CheckCity();
+
+CREATE FUNCTION TR_Reservations_CheckStatus()
+RETURNS TRIGGER AS $$
+BEGIN
+    IF (SELECT status FROM rooms WHERE id = NEW.room_id) = 'OUT_OF_SERVICE' THEN
+        RAISE EXCEPTION 'Room is out of service, reservation not allowed';
+    END IF;
+    RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER TR_Reservations_CheckStatus BEFORE INSERT ON reservations
+FOR EACH ROW
+EXECUTE PROCEDURE TR_Reservations_CheckStatus();
 
 INSERT INTO user_permissions(id, max_reservation_time_hours, max_room_size, max_reservations_per_day)
 VALUES
