@@ -1,4 +1,3 @@
-DROP TABLE IF EXISTS user_permissions;
 DROP TABLE IF EXISTS reservations;
 DROP TABLE IF EXISTS employees;
 DROP TABLE IF EXISTS rooms;
@@ -6,6 +5,7 @@ DROP TABLE IF EXISTS buildings;
 DROP TABLE IF EXISTS cities;
 DROP TABLE IF EXISTS countries;
 DROP TABLE IF EXISTS regions;
+DROP TABLE IF EXISTS user_permissions;
 
 CREATE TABLE regions(
     id INT,
@@ -39,6 +39,14 @@ CREATE TABLE buildings(
     FOREIGN KEY(city_id) REFERENCES cities(id)
 );
 
+CREATE TABLE user_permissions(
+    id INT,
+    max_reservation_time_hours FLOAT,
+    max_room_size INT,
+    max_reservations_per_day INT,
+    PRIMARY KEY(id)
+);
+
 CREATE TABLE rooms(
     id INT,
     building_id INT,
@@ -68,7 +76,7 @@ CREATE TABLE employees(
     FOREIGN KEY(priority) REFERENCES user_permissions(id)
 );
 
-create table reservations(
+CREATE TABLE reservations(
     id INT,
     room_id INT,
     employee_id VARCHAR(10),
@@ -83,13 +91,78 @@ create table reservations(
     FOREIGN KEY(employee_id) REFERENCES employees(id)
 );
 
-CREATE TABLE user_permissions(
-    id INT,
-    max_reservation_time_hours FLOAT,
-    max_room_size INT,
-    max_reservations_per_day INT,
-    PRIMARY KEY(id)
-);
+CREATE FUNCTION TR_Reservations_CheckOverlap()
+RETURNS TRIGGER AS $$
+BEGIN
+    IF EXISTS (SELECT * FROM reservations r
+               WHERE r.room_id = NEW.room_id
+               AND (NEW.start_time BETWEEN r.start_time AND r.end_time
+               OR NEW.end_time BETWEEN r.start_time AND r.end_time)) THEN
+        RAISE EXCEPTION 'Reservation overlaps with existing one';
+    END IF;
+    RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER TR_Reservations_CheckOverlap BEFORE INSERT ON reservations
+FOR EACH ROW
+EXECUTE PROCEDURE TR_Reservations_CheckOverlap();
+
+CREATE FUNCTION TR_Reservations_CheckPriority()
+RETURNS TRIGGER AS $$
+BEGIN
+    IF (SELECT priority FROM rooms WHERE id = NEW.room_id) < (SELECT priority FROM employees WHERE id = NEW.employee_id) THEN
+        RAISE EXCEPTION 'Priority not high enough to reserve this room';
+    END IF;
+    RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER TR_Reservations_CheckPriority BEFORE INSERT ON reservations
+FOR EACH ROW
+EXECUTE PROCEDURE TR_Reservations_CheckPriority();
+
+--CREATE FUNCTION TR_Reservations_CheckDate()
+--RETURNS TRIGGER AS $$
+--BEGIN
+--    IF NEW.start_time < CURRENT_TIMESTAMP THEN
+--        RAISE EXCEPTION 'Cannot reserve a room for a date in the past';
+--    END IF;
+--    RETURN NEW;
+--END;
+--$$ LANGUAGE plpgsql;
+
+--CREATE TRIGGER TR_Reservations_CheckDate BEFORE INSERT ON reservations
+--FOR EACH ROW
+--EXECUTE PROCEDURE TR_Reservations_CheckDate();
+
+CREATE FUNCTION TR_Reservations_CheckCity()
+RETURNS TRIGGER AS $$
+BEGIN
+    IF (SELECT city_id FROM buildings WHERE id = (SELECT building_id FROM rooms WHERE id = NEW.room_id)) <> (SELECT city_id FROM employees WHERE id = NEW.employee_id) AND (SELECT delegation_city_id FROM employees WHERE id = NEW.employee_id) <> (SELECT city_id FROM buildings WHERE id = (SELECT building_id FROM rooms WHERE id = NEW.room_id)) THEN
+        RAISE EXCEPTION 'Employee not allowed to reserve this room';
+    END IF;
+    RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER TR_Reservations_CheckCity BEFORE INSERT ON reservations
+FOR EACH ROW
+EXECUTE PROCEDURE TR_Reservations_CheckCity();
+
+CREATE FUNCTION TR_Reservations_CheckStatus()
+RETURNS TRIGGER AS $$
+BEGIN
+    IF (SELECT status FROM rooms WHERE id = NEW.room_id) = 'OUT_OF_SERVICE' THEN
+        RAISE EXCEPTION 'Room is out of service, reservation not allowed';
+    END IF;
+    RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER TR_Reservations_CheckStatus BEFORE INSERT ON reservations
+FOR EACH ROW
+EXECUTE PROCEDURE TR_Reservations_CheckStatus();
 
 INSERT INTO user_permissions(id, max_reservation_time_hours, max_room_size, max_reservations_per_day)
 VALUES
