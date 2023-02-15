@@ -30,6 +30,31 @@ public class DBSession {
         }
     }
 
+    public int queryOne(String queryName, Object... args) {
+        final String query = getQueryTemplate(queryName).getQuery();
+        try {
+            return jdbcTemplate.queryForObject(query, Integer.class, args);
+        } catch (EmptyResultDataAccessException e) {
+            String message = "Entity of type int not found";
+            throw new EntityNotFoundException(message);
+        }
+    }
+
+    public <T> T queryOneWithConditions(String queryName, Class<T> type, List<AbstractQueryCondition> conditions) {
+        String query = getQueryTemplate(queryName).getQuery();
+
+        queryHelper.filterEmptyConditions(conditions);
+        query = queryHelper.addWhereClauses(query, conditions);
+        Object[] args = queryHelper.mapConditionsToValuesArray(conditions);
+
+        try {
+            return jdbcTemplate.queryForObject(query, new BeanPropertyRowMapper<>(type), args);
+        } catch (EmptyResultDataAccessException e) {
+            String message = "Entity of type: " + type + " not found";
+            throw new EntityNotFoundException(message);
+        }
+    }
+
     public <T> List<T> queryMultiple(String queryName, Class<T> type, List<AbstractQueryCondition> conditions) {
         String query = getQueryTemplate(queryName).getQuery();
 

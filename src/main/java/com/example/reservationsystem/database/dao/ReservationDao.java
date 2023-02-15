@@ -8,6 +8,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import org.springframework.stereotype.Component;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Component
@@ -41,5 +42,9 @@ public class ReservationDao implements Dao<Long, Reservation> {
     @Override
     public List<Reservation> getAll(List<AbstractQueryCondition> conditions) {
         return dbSession.queryMultiple("selectAllFromReservations", Reservation.class, conditions);
+    }
+
+    public int getCountWithinTimePeriod(long roomId, LocalDateTime from, LocalDateTime to) {
+        return dbSession.queryOne("countReservationsByRoomIdAndTimePeriod", roomId, to, from);
     }
 }

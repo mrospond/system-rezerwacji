@@ -3,15 +3,12 @@ package com.example.reservationsystem.service;
 import com.example.reservationsystem.domain.Employee;
 import com.example.reservationsystem.dto.RoomFilterDto;
 import com.example.reservationsystem.dto.mappers.RoomFilterMapper;
-import com.example.reservationsystem.security.EmployeeUser;
 import com.example.reservationsystem.security.Role;
 import com.example.reservationsystem.service.filters.RecordFilter;
 import com.example.reservationsystem.service.filters.rooms.RoomCityIdFilter;
 import com.example.reservationsystem.service.filters.rooms.RoomPriorityLowerThanFilter;
 import lombok.AllArgsConstructor;
-import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -28,9 +25,7 @@ public class FilterServiceImpl implements FilterService {
     public List<RecordFilter> createUserSpecificFilters() {
         List<RecordFilter> recordFilters = new ArrayList<>();
 
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        EmployeeUser user = (EmployeeUser) authentication.getPrincipal();
-        Employee employee = employeeService.findEmployeeByEmail(user.getEmail());
+        Employee employee = employeeService.getLoggedInUserDetails();
 
         addCityRecordFilter(recordFilters, employee);
         addMaxRoomPriorityRecordFilter(recordFilters, employee);
@@ -41,6 +36,7 @@ public class FilterServiceImpl implements FilterService {
     @Override
     public void addRoomFilter(List<RecordFilter> filters, RoomFilterDto filterDto) {
         filters.add(roomFilterMapper.mapToRoomFilter(filterDto));
+        filters.add(roomFilterMapper.mapToTimePeriodFilter(filterDto));
     }
 
     @Override

@@ -53,4 +53,8 @@ public class ConditionBuilder {
     public <T> MultiValueQueryCondition<T> notIn(List<T> values) {
         return new MultiValueQueryCondition<>(key, NOT_IN, values);
     }
+
+    public <T> SubqueryCondition<T> equalToQuery(String query, T... args) {
+        return new SubqueryCondition<>(key, EQUALS, query, args);
+    }
 }

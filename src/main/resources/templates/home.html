@@ -31,6 +31,7 @@
                     <th>Video Conference Holder</th>
                     <th>Building</th>
                     <th>City</th>
+                    <th></th>
                 </tr>
                 <tr th:each="room: ${rooms}">
                     <td th:text="${room.name}"></td>
@@ -40,6 +41,7 @@
                     <td th:text="${room.videoConferenceHolder} ? 'Yes' : 'No'"></td>
                     <td th:text="${room.building}"></td>
                     <td th:text="${room.city}"></td>
+                    <td><a th:href="'/reservation?roomId=' + ${room.id}">Book</a></td>
                 </tr>
             </table>
         </div>
@@ -94,10 +96,23 @@
                             <input type="text" name="building" th:value="${roomFilter?.building} ?: ''">
                         </label>
                     </div>
+                    <div>
+                        <label>
+                            Date
+                            <input type="date" name="date" th:value="${roomFilter?.date} ?: ''">
+                        </label>
+                    </div>
+                    <div>
+                        <label>
+                            Time
+                            <select name="hour">
+                                <option th:each="i: ${#numbers.sequence(6, 20)}" th:value="${i}" th:text="${i} + ':00'">1:00</option>
+                            </select>
+                        </label>
+                    </div>
                     <div class="filter-button-container">
                         <input type="submit" class="filter-submit" value="Filter">
                     </div>
-                    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                 </form>
             </div>
         </div>

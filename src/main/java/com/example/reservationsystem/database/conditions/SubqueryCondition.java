@@ -4,24 +4,28 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
 @Getter
 @Setter
-public class MultiValueQueryCondition<T> extends AbstractQueryCondition {
-    private List<T> values;
+public class SubqueryCondition<T> extends AbstractQueryCondition {
+    private String preparedQuery;
+    private List<T> args;
 
-    public MultiValueQueryCondition(String key, String symbol, List<T> values) {
+    @SafeVarargs
+    public SubqueryCondition(String key, String symbol, String preparedQuery, T... args) {
         super();
         this.key = key;
         this.symbol = symbol;
-        this.values = filterNulls(values);
+        this.preparedQuery = preparedQuery;
+        this.args = filterNulls(args);
     }
 
-    private List<T> filterNulls(List<T> values) {
-        return values.stream()
+    private List<T> filterNulls(T[] values) {
+        return Arrays.stream(values)
                 .filter(Objects::nonNull)
                 .collect(Collectors.toCollection(ArrayList::new));
     }
@@ -31,12 +35,11 @@ public class MultiValueQueryCondition<T> extends AbstractQueryCondition {
         if (isEmpty()) {
             return "";
         }
-        String commaSeparatedQuestionMarks = "(" + "?, ".repeat(values.size() - 1) + "?)";
-        return key + " " + symbol + " " + commaSeparatedQuestionMarks;
+        return key + " " + symbol + " (" + preparedQuery + ")";
     }
 
     @Override
     public boolean isEmpty() {
-        return values.isEmpty();
+        return preparedQuery == null || preparedQuery.isBlank() || args.isEmpty();
     }
 }

@@ -29,6 +29,9 @@ public class QueryHelper {
                     else if (condition instanceof MultiValueQueryCondition<?> multiValueQueryCondition) {
                         return multiValueQueryCondition.getValues();
                     }
+                    else if (condition instanceof SubqueryCondition<?> subqueryCondition) {
+                        return subqueryCondition.getArgs();
+                    }
                     else {
                         throw new IllegalArgumentException("Unable to map class: " + condition.getClass());
                     }

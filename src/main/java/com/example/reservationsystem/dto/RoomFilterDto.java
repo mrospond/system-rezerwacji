@@ -1,5 +1,6 @@
 package com.example.reservationsystem.dto;
 
+import com.example.reservationsystem.dto.validation.FutureDateTime;
 import com.example.reservationsystem.dto.validation.MinSeatNotBiggerThanMaxSeat;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
@@ -7,10 +8,12 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
 import lombok.Data;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Data
 @MinSeatNotBiggerThanMaxSeat
+@FutureDateTime
 public class RoomFilterDto {
     @Pattern(regexp = NAME_REGEXP, message = "Room name has to match regular expression: " + NAME_REGEXP)
     private String roomName;
@@ -35,6 +38,10 @@ public class RoomFilterDto {
     @NotBlank(message = "Video conference holder cannot be blank")
     @Pattern(regexp = VCH_REGEXP, message = "Video conference holder has to match regular expression: " + VCH_REGEXP)
     private String videoConferenceHolder;
+    private LocalDate date;
+    @Min(value = 6, message = "Hour cannot be before 6")
+    @Max(value = 20, message = "Hour cannot be after 20")
+    private int hour;
 
     private static final String STATUS_REGEXP = "^(all|available|unavailable)$";
     private static final String VCH_REGEXP = "^(all|yes|no)$";

@@ -6,18 +6,29 @@ import com.example.reservationsystem.database.dao.RoomDao;
 import com.example.reservationsystem.domain.Reservation;
 import com.example.reservationsystem.domain.Room;
 import com.example.reservationsystem.service.filters.RecordFilter;
-import lombok.AllArgsConstructor;
+import com.example.reservationsystem.service.reservation.ReservationValidator;
+import com.example.reservationsystem.service.reservation.ReservationValidatorImpl;
+import jakarta.annotation.PostConstruct;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class RoomReservationServiceImpl implements RoomReservationService {
     private final RoomDao roomDao;
     private final ReservationDao reservationDao;
+    private final EmployeeService employeeService;
+    private ReservationValidator reservationValidator;
+
+    @PostConstruct
+    private void constructValidator() {
+        reservationValidator = new ReservationValidatorImpl(employeeService, this, roomDao);
+    }
 
     @Override
     public List<Room> findAvailableRooms(List<RecordFilter> filters) {
@@ -27,7 +38,20 @@ public class RoomReservationServiceImpl implements RoomReservationService {
 
     @Override
     public void reserveRoom(Reservation reservation) {
-        reservationDao.insert(reservation);
+        if (reservationValidator.validate(reservation)) {
+            reservationDao.insert(reservation);
+        }
+    }
+
+    @Override
+    public boolean isTimeSlotFree(long roomId, LocalDateTime from, LocalDateTime to) {
+        return reservationDao.getCountWithinTimePeriod(roomId, from, to) == 0;
+    }
+
+    @Override
+    public List<Reservation> getReservations(List<RecordFilter> filters) {
+        List<AbstractQueryCondition> conditions = getQueryConditions(filters, Reservation.class);
+        return reservationDao.getAll(conditions);
     }
 
     private <C> List<AbstractQueryCondition> getQueryConditions(List<RecordFilter> recordFilters, Class<C> clazz) {

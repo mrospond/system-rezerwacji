@@ -3,9 +3,13 @@ package com.example.reservationsystem.dto.mappers;
 import com.example.reservationsystem.database.conditions.ConditionBuilder;
 import com.example.reservationsystem.domain.Room;
 import com.example.reservationsystem.dto.RoomFilterDto;
+import com.example.reservationsystem.service.filters.reservations.ReservationTimePeriodRoomIdFilter;
 import com.example.reservationsystem.service.filters.rooms.RoomFilter;
 import org.springframework.stereotype.Component;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,6 +32,18 @@ public class RoomFilterMapperImpl implements RoomFilterMapper {
                 .videoConferenceHolder(ConditionBuilder.key(ROOM_PREFIX + "video_conference_holder")
                         .in(getVideoConferenceValues(dto)))
                 .build();
+    }
+
+    @Override
+    public ReservationTimePeriodRoomIdFilter mapToTimePeriodFilter(RoomFilterDto dto) {
+        LocalDate day = dto.getDate();
+        if (day == null) {
+            day = LocalDate.now();
+        }
+        LocalTime hour = LocalTime.of(dto.getHour(), 0);
+        LocalDateTime dateTime = LocalDateTime.of(day, hour);
+        LocalDateTime dateTimePlusHour = dateTime.plusHours(1L);
+        return new ReservationTimePeriodRoomIdFilter(dateTime, dateTimePlusHour);
     }
 
     private List<Integer> getFloors(RoomFilterDto dto) {

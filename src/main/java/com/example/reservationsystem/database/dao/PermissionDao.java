@@ -2,29 +2,31 @@ package com.example.reservationsystem.database.dao;
 
 import com.example.reservationsystem.database.DBSession;
 import com.example.reservationsystem.database.conditions.AbstractQueryCondition;
-import com.example.reservationsystem.domain.Room;
+import com.example.reservationsystem.domain.Permissions;
 import lombok.AllArgsConstructor;
+import lombok.Data;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
 
 @Component
+@Data
 @AllArgsConstructor
-public class RoomDao implements Dao<Long, Room> {
+public class PermissionDao implements Dao<Long, Permissions> {
     private final DBSession dbSession;
 
     @Override
-    public Room getById(Long id) {
-        return dbSession.queryOne("selectRoomById", Room.class, id);
+    public Permissions getById(Long id) {
+        return dbSession.queryOne("selectPermissionById", Permissions.class, id);
     }
 
     @Override
-    public void insert(Room entity) {
+    public void insert(Permissions entity) {
 
     }
 
     @Override
-    public void updateById(Long id, Room entity) {
+    public void updateById(Long id, Permissions entity) {
 
     }
 
@@ -34,7 +36,7 @@ public class RoomDao implements Dao<Long, Room> {
     }
 
     @Override
-    public List<Room> getAll(List<AbstractQueryCondition> conditions) {
-        return dbSession.queryMultiple("selectAllFromRooms", Room.class, conditions);
+    public List<Permissions> getAll(List<AbstractQueryCondition> conditions) {
+        return null;
     }
 }

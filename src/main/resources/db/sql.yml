@@ -21,6 +21,12 @@ sql:
 
     queries:
         -
+            name: countReservationsByRoomIdAndTimePeriod
+            query: SELECT COUNT(*) FROM reservations WHERE room_id = ? AND start_time <= ? AND end_time >= ?
+        -
+            name: countReservationsByEmployeeIdAndTimePeriod
+            query: SELECT COUNT(*) FROM reservations WHERE employee_id = ? AND start_time <= ? AND end_time >= ?
+        -
             name: selectAllFromEmployees
             query: SELECT e.*, c.name city, dc.name delegationCity FROM employees e JOIN cities c ON e.city_id = c.id LEFT JOIN cities dc ON e.delegation_city_id = dc.id;
         -
@@ -29,6 +35,12 @@ sql:
         -
             name: selectEmployeeById
             query: SELECT * FROM employees e WHERE e.id = ?;
+        -
+            name: selectPermissionById
+            query: SELECT * FROM user_permissions WHERE id = ?;
+        -
+            name: selectRoomById
+            query: SELECT * FROM rooms WHERE id = ?;
         -
             name: selectAllReservationsBetweenTimePeriodByCity
             query: SELECT res.* FROM reservations res JOIN rooms r ON res.room_id = r.id JOIN buildings b ON r.building_id = b.id WHERE b.city_id = ? AND res.end_time > ? AND res.start_time < ?;
@@ -40,4 +52,4 @@ sql:
             query: SELECT * FROM reservations res;
         -
             name: selectAllFromRooms
-            query: SELECT r.*, b.city_id, b.name building, c.name city FROM rooms r JOIN buildings b ON b.id = r.building_id JOIN cities c ON c.id = b.city_id;
+            query: SELECT r.*, b.city_id, b.name building, c.name city, res.start_time, res.end_time FROM rooms r JOIN buildings b ON b.id = r.building_id JOIN cities c ON c.id = b.city_id LEFT JOIN reservations res ON r.id = res.room_id;

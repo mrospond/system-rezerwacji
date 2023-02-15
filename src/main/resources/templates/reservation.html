@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Reservation</title>
+</head>
+<body>
+    <form method="post" action="/reservation/bookRoom">
+        <input type="hidden" name="roomId" th:value="${roomId}">
+        <div>
+            <label>
+                Date
+                <input type="date" name="date">
+            </label>
+        </div>
+        <label>
+            From
+            <select name="from">
+                <option th:each="i: ${#numbers.sequence(6, 20)}" th:value="${i}" th:text="${i} + ':00'">1:00</option>
+            </select>
+        </label>
+        <label>
+            To
+            <select name="to">
+                <option th:each="i: ${#numbers.sequence(6, 20)}" th:value="${i}" th:text="${i} + ':00'">1:00</option>
+            </select>
+        </label>
+        <input type="submit" value="Book">
+    </form>
+</body>
+</html>
