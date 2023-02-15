@@ -20,7 +20,7 @@ public class ReservationTimePeriodRoomIdFilter implements RecordFilter {
                                 """
                                 SELECT COUNT(*) FROM reservations
                                 WHERE room_id = res.room_id
-                                AND start_time <= ? AND end_time >= ?
+                                AND start_time < ? AND end_time > ?
                                 """
                 , to, from)
         );

@@ -105,7 +105,7 @@
                     <div>
                         <label>
                             Time
-                            <select name="hour">
+                            <select name="hour" id="hour" th:value="${roomFilter?.hour} ?: '6'">
                                 <option th:each="i: ${#numbers.sequence(6, 20)}" th:value="${i}" th:text="${i} + ':00'">1:00</option>
                             </select>
                         </label>
